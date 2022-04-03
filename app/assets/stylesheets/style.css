@@ -85,6 +85,72 @@
 .side-bar {
   background-color: rgb(165, 105, 221);
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contents-btns {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendar-btn {
+  height: 150px;
+  width: 150px;
+}
+
+.category-btn {
+  height: 150px;
+  width: 150px;
+}
+
+.fix-btn {
+  height: 150px;
+  width: 150px;
+}
+
+.side-btn {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgb(194, 140, 245);
+}
+
+.user {
+  height: 23%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.setting {
+  width: 70px;
+}
+
+.user-info {
+  width: 70px;
+}
+
+.bottom-btn {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contents {

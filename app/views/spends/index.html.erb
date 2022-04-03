@@ -14,7 +14,38 @@
 </div>
 <div class="main">
   <div class="side-bar">
-    <h1>サイドバー</h1>
+    <div class="contents-btns">
+      <div class="calendar-btn">
+        <a class="side-btn" href="#">
+          <span><%= image_tag 'calendar.png', size: '80x80' %></span>
+          <p>支出を入力</p>
+        </a>
+      </div>
+      <div class="category-btn">
+        <a class="side-btn" href="#">
+          <span><%= image_tag 'category.png', size: '90x60' %></span>
+          <p>カテゴリー</p>
+        </a>
+      </div>
+      <div class="fix-btn">
+        <a class="side-btn" href="#">
+          <span><%= image_tag 'fix.png', size: '80x90' %></span>
+          <p>固定費</p>
+        </a>
+      </div>
+    </div>
+    <div class="user">
+      <div class="setting">
+        <a class="bottom-btn" href="#">
+          <span><%= image_tag 'setting.png', size: '50x50' %></span>
+        </a>
+      </div>
+      <div class="user-info">
+        <a class="bottom-btn" href="#">
+          <span><%= image_tag 'user.png', size: '50x50' %></span>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="contents">
     <h1>コンテンツ</h1>
