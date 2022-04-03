@@ -1,0 +1,42 @@
+.header {
+  background-color: blueviolet;
+  height: 110px;
+  display: flex;
+}
+
+.header-logo {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: block;
+  color: rgb(240, 152, 123);
+  font-size: 50px;
+  font-weight: bold;
+  font-style: italic;
+  width: 190px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+
+.main {
+  display: flex;
+  height: calc(100vh - 110px)
+}
+
+.side-bar {
+  background-color: rgb(165, 105, 221);
+  width: 200px;
+}
+
+.contents {
+  background-color: rgb(201, 184, 218);
+  width: calc(100vw - 200px);
+}
+
