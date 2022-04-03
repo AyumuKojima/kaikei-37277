@@ -1,7 +1,8 @@
 .header {
   background-color: blueviolet;
-  height: 110px;
+  height: 100px;
   display: flex;
+  align-items: center;
 }
 
 .header-logo {
@@ -12,7 +13,6 @@
 }
 
 .logo {
-  display: block;
   color: rgb(240, 152, 123);
   font-size: 50px;
   font-weight: bold;
@@ -24,11 +24,63 @@
   padding-left: 5px;
 }
 
+.header-main {
+  width: calc(100% - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty {
+  width: calc(50% - 200px);
+}
+
+.header-date {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+}
+
+.last-month {
+  width: 50px;
+  height: 80px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.current-month {
+  width: 300px;
+  height: 80px;
+  font-size: 40px;
+  border: 3px solid black;
+  margin: 0 20px;
+}
+
+.display-month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.next-month {
+  width: 50px;
+  height: 80px;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .main {
   display: flex;
-  height: calc(100vh - 110px)
+  height: calc(100vh - 100px)
 }
+
 
 .side-bar {
   background-color: rgb(165, 105, 221);
