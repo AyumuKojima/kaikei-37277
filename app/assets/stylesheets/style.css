@@ -1,0 +1,194 @@
+.header {
+  background-color: blueviolet;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  color: rgb(240, 152, 123);
+  font-size: 50px;
+  font-weight: bold;
+  font-style: italic;
+  width: 190px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+
+
+.contents-btns {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.contents-btn {
+  height: 90px;
+  width: 90px;
+}
+
+.side-btn {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgb(194, 140, 245);
+  font-size: 12px;
+}
+
+.main {
+  display: flex;
+  height: calc(100vh - 60px)
+}
+
+
+.side-bar {
+  background-color: rgb(165, 105, 221);
+  width: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.user {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.setting {
+  width: 70px;
+}
+
+.user-info {
+  width: 70px;
+}
+
+.bottom-btn {
+  display: block;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contents {
+  width: calc(100vw - 110px);
+  display: flex;
+}
+
+.calendar {
+  width: 75%;
+  padding: 5px 20px;
+}
+
+.simple-calendar .day {
+  height: 100px;
+}
+
+.simple-calendar .calendar-heading {
+  margin: 15px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
+}
+
+.simple-calendar .spend-sum {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: red;
+  margin-bottom: 40px;
+}
+
+.simple-calendar .wday {
+  text-align: center;
+}
+
+
+.spend-input {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spend-form-text {
+  margin-top: 100px;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.spend-input-form {
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  width: 80%;
+  height: 60%;
+}
+
+.spend-date-input-form {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.spend-money-input-form {
+  display: block;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.spend-category-input-form {
+  display: block;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.spend-memo-input-form {
+  display: block;
+  width: 100%;
+  height: 20%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 6px;
+  margin-top: 10px;
+}
