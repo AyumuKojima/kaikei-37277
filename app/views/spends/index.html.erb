@@ -4,32 +4,25 @@
       KaiKei
     </a>
   </div>
-  <div class="header-main">
-    <div class="header-date">
-      <div class="last-month"><a href="#">◀︎</a></div>
-      <div class="current-month"><a class="display-month" href="#">2022年 4月</a></div>
-      <div class="next-month"><a href="#">▶︎</a></div>
-    </div>
-  </div>
 </div>
 <div class="main">
   <div class="side-bar">
     <div class="contents-btns">
-      <div class="calendar-btn">
+      <div class="contents-btn">
         <a class="side-btn" href="#">
           <span><%= image_tag 'calendar.png', size: '50x50' %></span>
           <p>支出を入力</p>
         </a>
       </div>
-      <div class="category-btn">
+      <div class="contents-btn">
         <a class="side-btn" href="#">
-          <span><%= image_tag 'category.png', size: '60x40' %></span>
+          <span><%= image_tag 'category.png', size: '60x35' %></span>
           <p>カテゴリー</p>
         </a>
       </div>
-      <div class="fix-btn">
+      <div class="contents-btn">
         <a class="side-btn" href="#">
-          <span><%= image_tag 'fix.png', size: '50x60' %></span>
+          <span><%= image_tag 'fix.png', size: '48x57' %></span>
           <p>固定費</p>
         </a>
       </div>
@@ -48,6 +41,13 @@
     </div>
   </div>
   <div class="contents">
-    <h1>コンテンツ</h1>
+    <div class="calendar">
+      <%= month_calendar do |date| %>
+        <%= date.day %>
+      <% end %>
+    </div>
+    <div class="input-form">
+      インプットフォーム
+    </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 .header {
   background-color: blueviolet;
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: center;
 }
@@ -24,52 +24,34 @@
   padding-left: 5px;
 }
 
-.header-main {
-  width: calc(100% - 200px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-date {
-  display: flex;
-  justify-content: center;
-  width: 400px;
-}
-
-.last-month {
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 
-.current-month {
-  width: 300px;
-  height: 50px;
-  font-size: 40px;
-  border: 3px solid black;
-  margin: 0 20px;
-}
-
-.display-month {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.contents-btns {
+  height: 50%;
   width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.next-month {
-  width: 50px;
-  height: 50px;
-  font-size: 40px;
+.contents-btn {
+  height: 90px;
+  width: 90px;
+}
+
+.side-btn {
+  display: block;
+  height: 100%;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgb(194, 140, 245);
+  font-size: 12px;
 }
 
 .main {
@@ -84,45 +66,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.contents-btns {
-  margin-top: 20px;
-  height: 40%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.calendar-btn {
-  height: 100px;
-  width: 100px;
-}
-
-.category-btn {
-  height: 100px;
-  width: 100px;
-}
-
-.fix-btn {
-  height: 100px;
-  width: 100px;
-}
-
-.side-btn {
-  display: block;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  border: 3px solid black;
-  border-radius: 10px;
-  background-color: rgb(194, 140, 245);
-  font-size: smaller;
+  padding-bottom: 50px;
 }
 
 .user {
@@ -152,7 +96,26 @@
 }
 
 .contents {
-  background-color: rgb(201, 184, 218);
+  /*background-color: rgb(201, 184, 218);*/
   width: calc(100vw - 110px);
+  display: flex;
+}
+
+.calendar {
+  width: 75%;
+  padding: 5px 20px;
+}
+
+.simple-calendar .day {
+  height: 120px;
+}
+
+.simple-calendar .calendar-heading {
+  margin-bottom: 20px;
+}
+
+.input-form {
+  width: 25%;
+  background-color: aqua;
 }
 
