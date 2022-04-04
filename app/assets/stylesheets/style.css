@@ -1,6 +1,6 @@
 .header {
   background-color: blueviolet;
-  height: 100px;
+  height: 60px;
   display: flex;
   align-items: center;
 }
@@ -31,10 +31,6 @@
   justify-content: center;
 }
 
-.empty {
-  width: calc(50% - 200px);
-}
-
 .header-date {
   display: flex;
   justify-content: center;
@@ -43,7 +39,7 @@
 
 .last-month {
   width: 50px;
-  height: 80px;
+  height: 50px;
   font-size: 40px;
   display: flex;
   align-items: center;
@@ -53,7 +49,7 @@
 
 .current-month {
   width: 300px;
-  height: 80px;
+  height: 50px;
   font-size: 40px;
   border: 3px solid black;
   margin: 0 20px;
@@ -69,7 +65,7 @@
 
 .next-month {
   width: 50px;
-  height: 80px;
+  height: 50px;
   font-size: 40px;
   display: flex;
   align-items: center;
@@ -78,20 +74,21 @@
 
 .main {
   display: flex;
-  height: calc(100vh - 100px)
+  height: calc(100vh - 60px)
 }
 
 
 .side-bar {
   background-color: rgb(165, 105, 221);
-  width: 200px;
+  width: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .contents-btns {
-  height: 70%;
+  margin-top: 20px;
+  height: 40%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -100,18 +97,18 @@
 }
 
 .calendar-btn {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .category-btn {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .fix-btn {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  width: 100px;
 }
 
 .side-btn {
@@ -125,10 +122,11 @@
   border: 3px solid black;
   border-radius: 10px;
   background-color: rgb(194, 140, 245);
+  font-size: smaller;
 }
 
 .user {
-  height: 23%;
+  height: 20%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -155,6 +153,6 @@
 
 .contents {
   background-color: rgb(201, 184, 218);
-  width: calc(100vw - 200px);
+  width: calc(100vw - 110px);
 }
 
