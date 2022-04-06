@@ -10,12 +10,6 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/header" %>
-    <div class="main">
-      <%= render partial: "layouts/side-bar" %>
-      <div class="contents">
-        <%= yield %>
-      </div>
-    </div>
+    <%= yield %>
   </body>
 </html>

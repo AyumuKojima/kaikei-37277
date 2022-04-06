@@ -11,4 +11,4 @@ function user_btn () {
   });
 };
 
-window.addEventListener('load', user_btn);
+window.addEventListener("turbolinks:load", user_btn);

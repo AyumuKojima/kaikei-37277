@@ -82,13 +82,23 @@
   width: 70px;
 }
 
-.bottom-btn {
+.setting-btn {
   display: block;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#user-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-btn:hover {
+  cursor: pointer;
 }
 
 .user {
