@@ -4,6 +4,10 @@
       KaiKei
     </a>
   </div>
+  <div>
+    <%= link_to "ログイン", new_user_session_path %>
+    <%= link_to "新規登録", new_user_registration_path %>
+  </div>
 </div>
 <div class="main">
   <div class="side-bar">
@@ -57,9 +61,7 @@
             </div>
           </div>
           <div class="sign-out-btn">
-            <a class="user-sign-out-btn" href="#">
-              <p>ログアウト</p>
-            </a>
+            <%= link_to "ログアウト", destroy_user_session_path, class: "user-sign-out-btn"%>
           </div>
         </div>
       </div>
