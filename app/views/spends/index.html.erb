@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="sign-out-btn">
-            <%= link_to "ログアウト", destroy_user_session_path, class: "user-sign-out-btn"%>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-sign-out-btn" %>
           </div>
         </div>
       </div>
