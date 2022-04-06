@@ -1,84 +1,18 @@
-<div class="header">
-  <div class="header-logo">
-    <%= link_to "KaiKei", root_path, class: "logo" %>
-  </div>
+<div class="calendar">
+  <%= month_calendar do |date| %>
+    <%= date.day %>
+  <% end %>
 </div>
-<div class="main">
-  <div class="side-bar">
-    <div class="contents-btns">
-      <div class="contents-btn">
-        <%= link_to spends_path, class: "side-btn" do %>
-          <span><%= image_tag 'calendar.png', size: '50x50' %></span>
-          <p>支出を入力</p>
-        <% end %>
-      </div>
-      <div class="contents-btn">
-        <a class="side-btn" href="#">
-          <span><%= image_tag 'category.png', size: '60x35' %></span>
-          <p>カテゴリー</p>
-        </a>
-      </div>
-      <div class="contents-btn">
-        <a class="side-btn" href="#">
-          <span><%= image_tag 'fix.png', size: '48x57' %></span>
-          <p>固定費</p>
-        </a>
-      </div>
-    </div>
-    <div class="user-btns">
-      <div class="user-btn">
-        <a class="bottom-btn" href="#">
-          <span><%= image_tag 'setting.png', size: '40x40' %></span>
-        </a>
-      </div>
-      <div class="user-btn">
-        <a class="bottom-btn" href="#">
-          <span><%= image_tag 'user.png', size: '40x40' %></span>
-        </a>
-        <div class="user">
-          <div class="user-info">
-            <div class="info-box">
-              <div class="info-name">
-                nickname:
-              </div>
-              <div class="user-name">
-                <%= current_user.nickname %>
-              </div>
-            </div>
-            <div class="info-box">
-              <div class="info-name">
-                email:
-              </div>
-              <div class="user-email">
-                <%= current_user.email %>
-              </div>
-            </div>
-          </div>
-          <div class="sign-out-btn">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-sign-out-btn" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="contents">
-    <div class="calendar">
-      <%= month_calendar do |date| %>
-        <%= date.day %>
-      <% end %>
-    </div>
-    <div class="spend-input">
-      <div class="spend-form-text">支出を入力</div>
-      <div class="spend-input-form">
-        <label for="spand-date">日付</label>
-        <input type="date" class="spend-date-input-form" id="spend-date" name="spend-date">
-        <label for="spend-money">金額</label>
-        <input type="text" class="spend-money-input-form" id="spend-money" name="spend-money" placeholder="money">
-        <label for="spend-category">カテゴリー</label>
-        <input type="text" class="spend-category-input-form" id="spend-category" name="spend-category">
-        <label for="spend-memo">メモ</label>
-        <textarea class="spend-memo-input-form" id="spend-memo" name="spend-memo" row="10"></textarea>
-      </div>
-    </div>
+<div class="spend-input">
+  <div class="spend-form-text">支出を入力</div>
+  <div class="spend-input-form">
+    <label for="spand-date">日付</label>
+    <input type="date" class="spend-date-input-form" id="spend-date" name="spend-date">
+    <label for="spend-money">金額</label>
+    <input type="text" class="spend-money-input-form" id="spend-money" name="spend-money" placeholder="money">
+    <label for="spend-category">カテゴリー</label>
+    <input type="text" class="spend-category-input-form" id="spend-category" name="spend-category">
+    <label for="spend-memo">メモ</label>
+    <textarea class="spend-memo-input-form" id="spend-memo" name="spend-memo" row="10"></textarea>
   </div>
 </div>
