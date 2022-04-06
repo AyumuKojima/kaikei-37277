@@ -1,18 +1,16 @@
 <div class="header">
   <div class="header-logo">
-    <a class="logo" href="#">
-      KaiKei
-    </a>
+    <%= link_to "KaiKei", root_path, class: "logo" %>
   </div>
 </div>
 <div class="main">
   <div class="side-bar">
     <div class="contents-btns">
       <div class="contents-btn">
-        <a class="side-btn" href="#">
+        <%= link_to spends_path, class: "side-btn" do %>
           <span><%= image_tag 'calendar.png', size: '50x50' %></span>
           <p>支出を入力</p>
-        </a>
+        <% end %>
       </div>
       <div class="contents-btn">
         <a class="side-btn" href="#">
