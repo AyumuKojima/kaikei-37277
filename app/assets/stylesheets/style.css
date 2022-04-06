@@ -101,10 +101,7 @@
   width: 330px;
   height: 230px;
   padding: 0 20px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: none;
 }
 
 .user-info {
@@ -141,6 +138,7 @@
 }
 
 .sign-out-btn {
+  margin-top: 10px;
   height: 40px;
   width: 100%;
   background-color: red;
