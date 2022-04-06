@@ -27,16 +27,39 @@
         </a>
       </div>
     </div>
-    <div class="user">
-      <div class="setting">
+    <div class="user-btns">
+      <div class="user-btn">
         <a class="bottom-btn" href="#">
           <span><%= image_tag 'setting.png', size: '40x40' %></span>
         </a>
       </div>
-      <div class="user-info">
+      <div class="user-btn">
         <a class="bottom-btn" href="#">
           <span><%= image_tag 'user.png', size: '40x40' %></span>
         </a>
+        <div class="user">
+          <div class="user-info">
+            <div class="info-box">
+              <div class="info-name">
+                nickname:
+              </div>
+              <div class="user-name">
+                <%= current_user.nickname %>
+              </div>
+            </div>
+            <div class="info-box">
+              <div class="info-name">
+                email:
+              </div>
+              <div class="user-email">
+                <%= current_user.email %>
+              </div>
+            </div>
+          </div>
+          <div class="sign-out-btn">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-sign-out-btn" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
