@@ -3,19 +3,19 @@
     <div class="contents-btn">
       <%= link_to spends_path, class: "side-btn" do %>
         <span><%= image_tag 'calendar.png', size: '50x50' %></span>
-        <p>支出を入力</p>
+        支出を入力
+      <% end %>
+    </div>
+    <div class="contents-btn">
+      <%= link_to categories_path, class: "side-btn" do %>
+        <span><%= image_tag 'category.png', size: '60x35' %></span>
+        カテゴリー
       <% end %>
     </div>
     <div class="contents-btn">
       <a class="side-btn" href="#">
-        <span><%= image_tag 'category.png', size: '60x35' %></span>
-        <p>カテゴリー</p>
-      </a>
-    </div>
-    <div class="contents-btn">
-      <a class="side-btn" href="#">
         <span><%= image_tag 'fix.png', size: '48x57' %></span>
-        <p>固定費</p>
+        固定費
       </a>
     </div>
   </div>
