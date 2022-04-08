@@ -8,11 +8,11 @@
       <div class="category-arrow">▶︎</div>
     </div>
     <div class="category-spend-sum">
-      合計出費額：30000円
+      合計出費額：<%= @sum %>円
     </div>
     <div class="categories">
       <div class="category-list">
-        <% @categories.each do |category| %>
+        <% @categories.each_with_index do |category, index| %>
           <div class="category-box">
             <div class="category-box-header">
               <div class="category-name">
@@ -28,9 +28,10 @@
               </div>
             </div>
             <div class="category-box-footer">
-              <div class="category-bar">
+              <div class="category-bar" >
+                <span class="percentage" style="display: none;"><%= @each_props[index] %></span>
                 <div class="category-money-sum">
-                  20000円
+                  <%= @each_sums[index] %>円
                 </div>
               </div>
             </div>
