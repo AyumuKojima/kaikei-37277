@@ -7,7 +7,7 @@
     </div>
     <div class="spend-input">
       <div class="spend-form-text">支出を入力</div>
-      <%= form_with model: @spend, local: true, class: "spend-input-form" do |f| %>
+      <%= form_with class: "spend-input-form" do |f| %>
         <div class="day-form">
           <%= raw sprintf(
                     f.date_select(
