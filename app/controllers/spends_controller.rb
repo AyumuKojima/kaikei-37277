@@ -4,6 +4,7 @@ class SpendsController < ApplicationController
     fake_category = Category.new(id: 0, title: "カテゴリーを選択してください")
     @select_categories = [fake_category].push(Category.all).flatten!
     @spend = Spend.new
+    @display_month = [Date.today.year, Date.today.month]
   end
 
   def create

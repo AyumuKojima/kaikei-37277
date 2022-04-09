@@ -179,7 +179,7 @@
   height: 100px;
 }
 
-.simple-calendar .calendar-heading {
+.calendar-heading {
   margin: 15px;
   height: 60px;
   display: flex;
@@ -189,7 +189,19 @@
   color: black;
 }
 
-.simple-calendar .spend-sum {
+.last-month-btn {
+  margin-right: 10px;
+}
+
+#display-month {
+  margin-left: 15px;
+}
+
+.next-month-btn {
+  margin-left: 10px;
+}
+
+.spend-sum {
   height: 50px;
   width: 100%;
   display: flex;
@@ -200,8 +212,43 @@
   margin-bottom: 40px;
 }
 
-.simple-calendar .wday {
-  text-align: center;
+.calendar-main {
+  width: 97%;
+  height: 67vh;
+  margin-left: 40px;
+  margin-top: 30px;
+  background-color: rgb(253, 252, 252);
+}
+
+.wdays {
+  width: 100%;
+  border: 1px solid black;
+  height: 7%;
+  display: flex;
+  background-color: rgb(197, 193, 193);
+}
+
+.wday {
+  width: calc(100% / 7);
+  height: 100%;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+}
+
+.dates {
+  width: 100%;
+  height: 93%;
+}
+
+.row {
+  width: 100%;
+  height: calc(100% / 6);
+  display: flex;
+}
+
+.date {
+  width: calc(100% / 7);
+  border: 1px solid grey;
 }
 
 .spend-input {
@@ -310,4 +357,8 @@
   border-radius: 5px;
   padding: 6px;
   margin-top: 10px;
+}
+
+#wday_num {
+  display: none;
 }

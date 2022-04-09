@@ -3,9 +3,7 @@
   <%= render partial: "layouts/side-bar" %>
   <div class="contents">
     <div class="calendar">
-      <%= month_calendar do |date| %>
-        <%= date.day %>
-      <% end %>
+      <%= render partial: "calendar" %>
     </div>
     <div class="spend-input">
       <div class="spend-form-text">支出を入力</div>

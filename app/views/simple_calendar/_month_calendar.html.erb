@@ -6,9 +6,7 @@
       <%= link_to t('simple_calendar.next', default: '▶︎'), calendar.url_for_next_view %>
     </div>
   </div>
-  <div class="spend-sum">
-    <p>合計出費額：30000円</p>
-  </div>
+  
 
   <table class="table table-striped">
     <thead>
@@ -29,6 +27,7 @@
               <% else %>
                 <% passed_block.call day, sorted_events.fetch(day, []) %>
               <% end %>
+              
             <% end %>
           <% end %>
         </tr>
