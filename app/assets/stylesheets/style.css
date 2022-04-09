@@ -179,7 +179,7 @@
   height: 100px;
 }
 
-.simple-calendar .calendar-heading {
+.calendar-heading {
   margin: 15px;
   height: 60px;
   display: flex;
@@ -189,7 +189,19 @@
   color: black;
 }
 
-.simple-calendar .spend-sum {
+.last-month-btn {
+  margin-right: 10px;
+}
+
+#display-month {
+  margin-left: 15px;
+}
+
+.next-month-btn {
+  margin-left: 10px;
+}
+
+.spend-sum {
   height: 50px;
   width: 100%;
   display: flex;
@@ -200,8 +212,59 @@
   margin-bottom: 40px;
 }
 
-.simple-calendar .wday {
-  text-align: center;
+.calendar-main {
+  width: 97%;
+  height: 67vh;
+  margin-left: 40px;
+  margin-top: 30px;
+  background-color: rgb(253, 252, 252);
+}
+
+.wdays {
+  width: 100%;
+  border: 1px solid black;
+  height: 7%;
+  display: flex;
+  background-color: rgb(197, 193, 193);
+}
+
+.wday {
+  width: calc(100% / 7);
+  height: 100%;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+}
+
+.dates {
+  width: 100%;
+  height: 93%;
+}
+
+.row {
+  width: 100%;
+  height: calc(100% / 6);
+  display: flex;
+}
+
+.date {
+  width: calc(100% / 7);
+  border: 1px solid grey;
+}
+
+.date-num {
+  height: 30%;
+  width: 100%;
+  padding: 5px;
+}
+
+.day-sum {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1vw;
+  color: rgb(165, 71, 212);
 }
 
 .spend-input {
@@ -225,9 +288,64 @@
   height: 60%;
 }
 
-.spend-date-input-form {
-  display: block;
-  margin-bottom: 30px;
+.day-form {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.year {
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.month {
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.day {
+  margin-left: 5px;
+}
+
+#_day_1i {
+  padding-left: 3px;
+  width: 20%;
+  height: 60%;
+  font-size: 1vw;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+#_day_1i:hover {
+  cursor: pointer;
+}
+
+#_day_2i {
+  padding-left: 3px;
+  width: 12%;
+  height: 60%;
+  font-size: 1.1vw;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+#_day_2i:hover {
+  cursor: pointer;
+}
+
+#_day_3i {
+  padding-left: 3px;
+  width: 12%;
+  height: 60%;
+  font-size: 1.1vw;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+#_day_3i:hover {
+  cursor: pointer;
 }
 
 .spend-money-input-form {
@@ -241,18 +359,13 @@
   margin-bottom: 30px;
 }
 
-.spend-category-input-form {
-  display: block;
-  width: 100%;
-  height: 30px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 6px;
-  margin-top: 10px;
-  margin-bottom: 30px;
+.spend-category-select {
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 5px;
 }
 
-.spend-memo-input-form {
+.spend-memo-form {
   display: block;
   width: 100%;
   height: 20%;
@@ -260,4 +373,12 @@
   border-radius: 5px;
   padding: 6px;
   margin-top: 10px;
+}
+
+#wday_num {
+  display: none;
+}
+
+.each-sum {
+  display: none;
 }

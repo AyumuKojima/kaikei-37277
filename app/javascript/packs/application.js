@@ -10,6 +10,7 @@ require("channels")
 require("../user-btn")
 require("../form-color")
 require("../category")
+require("../calendar")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

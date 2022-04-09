@@ -1,0 +1,81 @@
+<div class="calendar-heading">
+  <a class="last-month-btn" href="#">◀︎</a>
+  <p id="display-year"><%= @display_month[0] %></p>年 <p id="display-month"><%= @display_month[1] %></p>月
+  <span id="wday_num"><%= Date.new(@display_month[0], @display_month[1], 1).wday %></span>
+  <a class="next-month-btn" href="#">▶︎</a>
+</div>
+<div class="spend-sum">
+  合計出費額：<%= @sum %>円
+</div>
+
+<div class="calendar-main">
+  <div class="wdays">
+    <div class="wday">日</div>
+    <div class="wday">月</div>
+    <div class="wday">火</div>
+    <div class="wday">水</div>
+    <div class="wday">木</div>
+    <div class="wday">金</div>
+    <div class="wday">土</div>
+  </div>
+  <div class="dates">
+    <div class="row">
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+      <div class="date row_1"></div>
+    </div>
+    <div class="row">
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+    <div class="row">
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+    <div class="row">
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+    <div class="row">
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+    <div class="row">
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+  </div>
+</div>
+
+<% @each_sums.each do |each_sum| %>
+  <span class="each-sum"><%= each_sum %></span>
+<% end %>
