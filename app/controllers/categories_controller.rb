@@ -23,4 +23,14 @@ class CategoriesController < ApplicationController
       @each_props << (each_sum * 100 / @sum).floor
     end
   end
+
+  def create
+    
+  end
+
+  private
+
+  def category_params
+    
+  end
 end
