@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category = Category.new
+    @colors = Color.all
     @sum = 0
     @categories.each do |category|
       category.spends.each do |spend|
