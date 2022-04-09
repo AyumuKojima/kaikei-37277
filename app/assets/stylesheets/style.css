@@ -251,6 +251,22 @@
   border: 1px solid grey;
 }
 
+.date-num {
+  height: 30%;
+  width: 100%;
+  padding: 5px;
+}
+
+.day-sum {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1vw;
+  color: rgb(165, 71, 212);
+}
+
 .spend-input {
   width: 25%;
   display: flex;
@@ -360,5 +376,9 @@
 }
 
 #wday_num {
+  display: none;
+}
+
+.each-sum {
   display: none;
 }

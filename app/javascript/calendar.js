@@ -6,8 +6,16 @@ function calendar () {
   const firstRows = document.querySelectorAll(".row_1");
   const dates = document.querySelectorAll(".date");
   const wdayNum = document.getElementById("wday_num").innerHTML;
-  
+  const eachSums = document.querySelectorAll(".each-sum");
+
   setDateNumber(displayYear, displayMonth, dates, wdayNum);
+
+  const daySums = document.querySelectorAll(".day-sum");
+  for (let i=0; i < eachSums.length; i++) {
+    if (eachSums[i].innerHTML != 0) {
+      daySums[i].insertAdjacentHTML('afterbegin', `${eachSums[i].innerHTML}円`);
+    };
+  };
 };
 
 
@@ -27,18 +35,21 @@ function setDateNumber (year, month, dates, wdayNum) {
   let k = getLastDayNum(year, month) - Number(wdayNum) + 1;
   let flag = 1
   for(let i=0; i < dates.length; i++) {
-    dates[i].insertAdjacentHTML('afterbegin', k);
-    k += 1;
     if (flag == 1) {
+      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num'>${k}</div>`);
+      k += 1;
       dates[i].setAttribute("style", "background-color: lightgrey;");
       if (k > getLastDayNum(year, month)) {
         k = 1;
         flag = 0;
       };
-    };
-    if (flag == 0 && k > getDayNum(year, month)) {
-      k = 1;
-      flag = 1;
+    } else {
+      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num'>${k}</div><div class='day-sum'></div>`);
+      k += 1;
+      if (k > getDayNum(year, month)) {
+        k = 1;
+        flag = 1;
+      };
     };
   };
 };
