@@ -1,6 +1,6 @@
 <div class="calendar-heading">
   <a class="last-month-btn" href="#">◀︎</a>
-  <p id="display-year"><%= @display_month[0] %></p>年 <p id="display-month"><%= @display_month[1] %></p>月
+  <p id="display-year"><%= params[:year_id] %></p>年 <p id="display-month"><%= params[:month_id] %></p>月
   <span id="wday_num"><%= Date.new(@display_month[0], @display_month[1], 1).wday %></span>
   <a class="next-month-btn" href="#">▶︎</a>
 </div>
