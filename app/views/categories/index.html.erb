@@ -54,13 +54,12 @@
       <%= form_with model: @category, class: "new-category-box-footer", local: true do |f| %>
         <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
         <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
-        <%= f.submit "カテゴリーを入力" %>
-      <% end %>
-      <div class="category-input">
-        <div class="category-input-btn" id="category-input-btn">
-          カテゴリーを追加する
+        <div class="category-input">
+          <div class="category-input-btn" id="category-input-btn">
+            <%= f.submit "カテゴリーを追加する", class: "category-post-submit-btn" %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
     <div id="color-list" style="display: none;">
       <%= @colors.each do |color| %>
