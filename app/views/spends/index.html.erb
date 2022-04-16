@@ -7,7 +7,7 @@
     </div>
     <div class="spend-input">
       <div class="spend-form-text">支出を入力</div>
-      <%= form_with class: "spend-input-form" do |f| %>
+      <%= form_with url: "/years/#{params[:year_id]}/months/#{params[:month_id]}/spends", class: "spend-input-form", id: "form" do |f| %>
         <div class="day-form">
           <%= raw sprintf(
                     f.date_select(
@@ -28,7 +28,7 @@
           {}, 
           {class: "spend-category-select"}) %>
         <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
-        <%= f.submit "支出を入力する" %>
+        <%= f.submit "支出を入力する", id: "submit" %>
       <% end %>
     </div>
   </div>
