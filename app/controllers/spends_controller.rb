@@ -8,8 +8,9 @@ class SpendsController < ApplicationController
 
   def create
     spend = Spend.create(spend_params)
-    sum = Spend.day_sum(spend)
-    render json: { spend: spend, sum: sum }
+    day_sum = Spend.day_sum(spend)
+    sum = Spend.sum(@year, @month)
+    render json: { spend: spend, day_sum: day_sum, sum: sum }
   end
 
   private

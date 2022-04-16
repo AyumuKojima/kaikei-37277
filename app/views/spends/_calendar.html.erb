@@ -12,7 +12,7 @@
     <%= link_to '▶︎', year_month_spends_path(params[:year_id].to_i, params[:month_id].to_i + 1), class: "next-month-btn" %>
   <% end %>
 </div>
-<div class="spend-sum">
+<div class="spend-sum" id="month-sum">
   合計出費額：<%= @sum %>円
 </div>
 
