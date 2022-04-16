@@ -27,42 +27,11 @@ function calendar () {
   const lastMonthDates = document.querySelectorAll(".last-month-date");
   const nextMonths = document.querySelectorAll(".next-month");
   const nextMonthDates = document.querySelectorAll(".next-month-date");
+  const borderStyle = "border:3px solid deeppink;";
 
-  for (let j=0; j < lastMonths.length; j++) {
-    lastMonths[j].addEventListener('click', () => {
-      if (displayMonth == 1) {
-        yearForm.value = Number(displayYear) - 1;
-        monthForm.value = 12;
-      } else {
-        yearForm.value = displayYear;
-        monthForm.value = Number(displayMonth) - 1;
-      };
-      dayForm.value = lastMonthDates[j].innerHTML;
-    });
-  };
-
-  for (let i=0; i < thisMonths.length; i++) {
-    thisMonths[i].addEventListener('click', () => {
-      yearForm.value = displayYear;
-      monthForm.value = displayMonth;
-      dayForm.value = thisMonthDates[i].innerHTML;
-    });
-  };
-
-  for (let n=0; n < nextMonths.length; n++) {
-    nextMonths[n].addEventListener('click', () => {
-      if (displayMonth == 12) {
-        yearForm.value = Number(displayYear) + 1;
-        monthForm.value = 1;
-      } else {
-        yearForm.value = displayYear;
-        monthForm.value = Number(displayMonth) + 1;
-      };
-      dayForm.value = nextMonthDates[n].innerHTML;
-    });
-  };
-
-
+  changeFormToLastMonth(lastMonths, lastMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle);
+  changeFormToThisMonth(thisMonths, thisMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle);
+  changeFormToNextMonth(nextMonths, nextMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle);
 
 };
 
@@ -94,7 +63,7 @@ function setDateNumber (year, month, dates, wDayNum) {
       dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num last-month-date'>${k}</div><div class='last-month-sum'></div>`);
       k += 1;
       w += 1;
-      dates[i].setAttribute("style", "background-color: lightgrey;");
+      dates[i].setAttribute("style", "background-color:lightgrey;");
       if (k > getLastDayNum(year, month)) {
         k = 1;
         flag = 2;
@@ -120,7 +89,7 @@ function setDateNumber (year, month, dates, wDayNum) {
       dates[i].setAttribute("class", "date next-month")
       dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num next-month-date'>${k}</div><div class='next-month-sum'></div>`);
       k += 1;
-      dates[i].setAttribute("style", "background-color: lightgrey;");
+      dates[i].setAttribute("style", "background-color:lightgrey;");
     };
   };
 };
@@ -134,7 +103,7 @@ function setEachSums (eachSums, daySums) {
 };
 
 function removeBottomRow (bottom, bottomLeft, rows) {
-  if (bottomLeft.getAttribute("style") == "background-color: lightgrey;") {
+  if (bottomLeft.getAttribute("style") == "background-color:lightgrey;") {
     for (let i=0; i < rows.length; i++) {
       rows[i].setAttribute("style", "height: calc(100% / 5);")
     };
@@ -145,6 +114,68 @@ function removeBottomRow (bottom, bottomLeft, rows) {
 function setTodayColor (displayYear, displayMonth, thisMonths) {
   const today = new Date();
   if (today.getFullYear() == displayYear && today.getMonth()+1 == displayMonth) {
-    thisMonths[today.getDate()-1].setAttribute("style", "background-color: yellow;")
+    thisMonths[today.getDate()-1].setAttribute("style", "background-color:yellow;")
   };
 };
+
+function cancelBorder (dates, borderStyle) {
+  for (let k=0; k < dates.length; k++) {
+    if (dates[k].getAttribute("style") == `background-color:lightgrey; ${borderStyle}`) {
+      dates[k].setAttribute("style", "background-color:lightgrey")
+    } else if (dates[k].getAttribute("style") == `background-color:yellow; ${borderStyle}`) {
+      dates[k].setAttribute("style", "background-color:yellow;");
+    } else if (dates[k].getAttribute("style") == borderStyle) {
+      dates[k].removeAttribute("style");
+    };
+  };
+};
+
+function changeFormToLastMonth (lastMonths, lastMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle) {
+  for (let j=0; j < lastMonths.length; j++) {
+    lastMonths[j].addEventListener('click', () => {
+      cancelBorder(dates, borderStyle);
+      lastMonths[j].setAttribute("style", `background-color:lightgrey; ${borderStyle}`);
+      if (displayMonth == 1) {
+        yearForm.value = Number(displayYear) - 1;
+        monthForm.value = 12;
+      } else {
+        yearForm.value = displayYear;
+        monthForm.value = Number(displayMonth) - 1;
+      };
+      dayForm.value = lastMonthDates[j].innerHTML;
+    });
+  };
+};
+
+function changeFormToThisMonth (thisMonths, thisMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle) {
+  for (let i=0; i < thisMonths.length; i++) {
+    thisMonths[i].addEventListener('click', () => {
+      cancelBorder(dates, borderStyle);
+      if (thisMonths[i].getAttribute("style") == `background-color:yellow;`) {
+        thisMonths[i].setAttribute("style", `background-color:yellow; ${borderStyle}`);
+      } else {
+        thisMonths[i].setAttribute("style", borderStyle);
+      }
+      yearForm.value = displayYear;
+      monthForm.value = displayMonth;
+      dayForm.value = thisMonthDates[i].innerHTML;
+    });
+  };
+};
+
+function changeFormToNextMonth (nextMonths, nextMonthDates, yearForm, monthForm, dayForm, displayYear, displayMonth, dates, borderStyle) {
+  for (let n=0; n < nextMonths.length; n++) {
+    nextMonths[n].addEventListener('click', () => {
+      cancelBorder(dates, borderStyle);
+      nextMonths[n].setAttribute("style", `background-color:lightgrey; ${borderStyle}`);
+      if (displayMonth == 12) {
+        yearForm.value = Number(displayYear) + 1;
+        monthForm.value = 1;
+      } else {
+        yearForm.value = displayYear;
+        monthForm.value = Number(displayMonth) + 1;
+      };
+      dayForm.value = nextMonthDates[n].innerHTML;
+    });
+  };
+}

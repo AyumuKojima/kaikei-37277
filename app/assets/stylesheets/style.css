@@ -259,6 +259,10 @@
   border: 1px solid grey;
 }
 
+.date:hover {
+  cursor: pointer;
+}
+
 .date-num {
   height: 30%;
   width: 100%;
