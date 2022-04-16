@@ -2,7 +2,10 @@ class SpendsController < ApplicationController
   before_action :set_spend, only: [:index, :create]
 
   def index
-    #binding.pry
+    @select_categories = Category.add_for_index
+    @spends = Spend.display(@year, @month)
+    @sum = Spend.sum(@year, @month)
+    @each_sums = Spend.each_sums(@year, @month)
     @spend = Spend.new
   end
 
@@ -22,9 +25,8 @@ class SpendsController < ApplicationController
   def set_spend
     @year = params[:year_id].to_i
     @month = params[:month_id].to_i
-    @select_categories = Category.add_for_index
-    @spends = Spend.display(@year, @month)
-    @sum = Spend.sum(@year, @month)
-    @each_sums = Spend.each_sums(@year, @month)
+    if @year > Date.today.year + 10 || @year < Date.today.year - 50 || @month > 12 || @month < 1
+      redirect_to year_month_spends_path(Date.today.year, Date.today.month)
+    end
   end
 end
