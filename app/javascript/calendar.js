@@ -5,27 +5,29 @@ function calendar () {
   const displayMonth = document.getElementById("display-month").innerHTML;
   const dates = document.querySelectorAll(".date");
   const wDayNum = document.getElementById("wday_num").innerHTML;
-  const eachSums = document.querySelectorAll(".each-sum");
-  
-
   setDateNumber(displayYear, displayMonth, dates, wDayNum);
 
+  const eachSums = document.querySelectorAll(".each-sum");
   const daySums = document.querySelectorAll(".day-sum");
-  for (let i=0; i < eachSums.length; i++) {
-    if (eachSums[i].innerHTML != 0) {
-      daySums[i].insertAdjacentHTML('afterbegin', `${eachSums[i].innerHTML}円`);
-    };
-  };
+  setEachSums(eachSums, daySums);
 
   const bottom = document.getElementById("bottom");
   const bottomLeft = document.getElementById("bottom-left");
+  const rows = document.querySelectorAll(".row");
+  removeBottomRow(bottom, bottomLeft, rows);
+  
+  const yearForm = document.getElementById("_day_1i");
+  const monthForm = document.getElementById("_day_2i");
+  const dayForm = document.getElementById("_day_3i");
+  const thisMonths = document.querySelectorAll(".this-month")
+  const thisMonthDates = document.querySelectorAll(".this-month-date")
 
-  if (bottomLeft.getAttribute("style") == "background-color: lightgrey;") {
-    const rows = document.querySelectorAll(".row");
-    for (let i=0; i < rows.length; i++) {
-      rows[i].setAttribute("style", "height: calc(100% / 5);")
+  if (yearForm.value == displayYear && monthForm.value == displayMonth) {
+    for (let i=0; i < thisMonths.length; i++) {
+      if (thisMonthDates[i].innerHTML == dayForm.value) {
+        thisMonths[i].setAttribute("style", "background-color: yellow;")
+      };
     };
-    bottom.setAttribute("style", "display: none;");
   };
 };
 
@@ -43,24 +45,64 @@ function getLastDayNum (year, month) {
 };
 
 function setDateNumber (year, month, dates, wDayNum) {
-  let k = getLastDayNum(year, month) - Number(wDayNum) + 1;
-  let flag = 1
+  let k = 1;
+  let flag = 1;
+  if (wDayNum == 0) {
+    flag = 2;
+  } else {
+    k = getLastDayNum(year, month) - Number(wDayNum) + 1;
+  };
+  let w = 0
   for(let i=0; i < dates.length; i++) {
     if (flag == 1) {
-      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num'>${k}</div>`);
+      dates[i].setAttribute("class", "date last-month");
+      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num last-month-date'>${k}</div><div class='last-month-sum'></div>`);
       k += 1;
+      w += 1;
       dates[i].setAttribute("style", "background-color: lightgrey;");
       if (k > getLastDayNum(year, month)) {
         k = 1;
-        flag = 0;
+        flag = 2;
       };
-    } else {
-      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num'>${k}</div><div class='day-sum'></div>`);
+    } else if (flag == 2) {
+      if (w == 0) {
+        dates[i].setAttribute("class", "date this-month sunday");
+        w += 1;
+      } else if (w == 6) {
+        dates[i].setAttribute("class", "date this-month saturday");
+        w = 0;
+      } else {
+        dates[i].setAttribute("class", "date this-month");
+        w += 1;
+      };
+      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num this-month-date'>${k}</div><div class='day-sum'></div>`);
       k += 1;
       if (k > getDayNum(year, month)) {
         k = 1;
-        flag = 1;
+        flag = 3;
       };
+    } else {
+      dates[i].setAttribute("class", "date next-month")
+      dates[i].insertAdjacentHTML('afterbegin', `<div class='date-num next-month-date'>${k}</div><div class='next-month-sum'></div>`);
+      k += 1;
+      dates[i].setAttribute("style", "background-color: lightgrey;");
     };
+  };
+};
+
+function setEachSums (eachSums, daySums) {
+  for (let i=0; i < eachSums.length; i++) {
+    if (eachSums[i].innerHTML != 0) {
+      daySums[i].insertAdjacentHTML('afterbegin', `${eachSums[i].innerHTML}円`);
+    };
+  };
+};
+
+function removeBottomRow (bottom, bottomLeft, rows) {
+  if (bottomLeft.getAttribute("style") == "background-color: lightgrey;") {
+    for (let i=0; i < rows.length; i++) {
+      rows[i].setAttribute("style", "height: calc(100% / 5);")
+    };
+    bottom.setAttribute("style", "display: none;");
   };
 };
