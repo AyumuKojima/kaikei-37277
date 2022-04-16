@@ -6,6 +6,17 @@ class SpendsController < ApplicationController
     @spends = Spend.display(@year, @month)
     @sum = Spend.sum(@year, @month)
     @each_sums = Spend.each_sums(@year, @month)
+    if @month == 1
+      @last_month_sums = Spend.each_sums(@year - 1, 12)
+    else
+      @last_month_sums = Spend.each_sums(@year, @month - 1)
+    end
+
+    if @month == 12
+      @next_month_sums = Spend.each_sums(@year + 1, 1)
+    else
+      @next_month_sums = Spend.each_sums(@year, @month + 1)
+    end
     @spend = Spend.new
   end
 

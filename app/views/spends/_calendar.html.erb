@@ -84,6 +84,16 @@
   </div>
 </div>
 
-<% @each_sums.each do |each_sum| %>
-  <span class="each-sum"><%= each_sum %></span>
-<% end %>
+<div class="sum-data">
+  <% @each_sums.each do |each_sum| %>
+    <span class="this-month-sum-data"><%= each_sum %></span>
+  <% end %>
+
+  <% @last_month_sums.each do |last_month_sum| %>
+    <span class="last-month-sum-data"><%= last_month_sum %></span>
+  <% end %>
+
+  <% @next_month_sums.each do |next_month_sum| %>
+    <span class="next-month-sum-data"><%= next_month_sum %></span>
+  <% end %>
+</div>

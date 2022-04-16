@@ -41,9 +41,9 @@ function rewriteCalendar (XHR) {
   const currentYear = document.getElementById("display-year").innerHTML;
   const currentMonth = document.getElementById("display-month").innerHTML;
   if (date.getFullYear() == currentYear && date.getMonth()+1 == currentMonth) {
-    const daySums = document.querySelectorAll(".day-sum");
+    const thisMonthSums = document.querySelectorAll(".this-month-sum");
     const monthSum = document.getElementById("month-sum");
-    daySums[date.getDate()-1].innerHTML = `${XHR.response.day_sum}円`;
+    thisMonthSums[date.getDate()-1].innerHTML = `${XHR.response.day_sum}円`;
     monthSum.innerHTML = `合計出費額：${XHR.response.sum}円`;
   };
 };
