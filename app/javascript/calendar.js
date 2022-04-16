@@ -16,19 +16,54 @@ function calendar () {
   const rows = document.querySelectorAll(".row");
   removeBottomRow(bottom, bottomLeft, rows);
   
+  const thisMonths = document.querySelectorAll(".this-month");
+  setTodayColor(displayYear, displayMonth, thisMonths);
+
   const yearForm = document.getElementById("_day_1i");
   const monthForm = document.getElementById("_day_2i");
   const dayForm = document.getElementById("_day_3i");
-  const thisMonths = document.querySelectorAll(".this-month")
-  const thisMonthDates = document.querySelectorAll(".this-month-date")
+  const thisMonthDates = document.querySelectorAll(".this-month-date");
+  const lastMonths = document.querySelectorAll(".last-month");
+  const lastMonthDates = document.querySelectorAll(".last-month-date");
+  const nextMonths = document.querySelectorAll(".next-month");
+  const nextMonthDates = document.querySelectorAll(".next-month-date");
 
-  if (yearForm.value == displayYear && monthForm.value == displayMonth) {
-    for (let i=0; i < thisMonths.length; i++) {
-      if (thisMonthDates[i].innerHTML == dayForm.value) {
-        thisMonths[i].setAttribute("style", "background-color: yellow;")
+  for (let j=0; j < lastMonths.length; j++) {
+    lastMonths[j].addEventListener('click', () => {
+      if (displayMonth == 1) {
+        yearForm.value = Number(displayYear) - 1;
+        monthForm.value = 12;
+      } else {
+        yearForm.value = displayYear;
+        monthForm.value = Number(displayMonth) - 1;
       };
-    };
+      dayForm.value = lastMonthDates[j].innerHTML;
+    });
   };
+
+  for (let i=0; i < thisMonths.length; i++) {
+    thisMonths[i].addEventListener('click', () => {
+      yearForm.value = displayYear;
+      monthForm.value = displayMonth;
+      dayForm.value = thisMonthDates[i].innerHTML;
+    });
+  };
+
+  for (let n=0; n < nextMonths.length; n++) {
+    nextMonths[n].addEventListener('click', () => {
+      if (displayMonth == 12) {
+        yearForm.value = Number(displayYear) + 1;
+        monthForm.value = 1;
+      } else {
+        yearForm.value = displayYear;
+        monthForm.value = Number(displayMonth) + 1;
+      };
+      dayForm.value = nextMonthDates[n].innerHTML;
+    });
+  };
+
+
+
 };
 
 
@@ -104,5 +139,12 @@ function removeBottomRow (bottom, bottomLeft, rows) {
       rows[i].setAttribute("style", "height: calc(100% / 5);")
     };
     bottom.setAttribute("style", "display: none;");
+  };
+};
+
+function setTodayColor (displayYear, displayMonth, thisMonths) {
+  const today = new Date();
+  if (today.getFullYear() == displayYear && today.getMonth()+1 == displayMonth) {
+    thisMonths[today.getDate()-1].setAttribute("style", "background-color: yellow;")
   };
 };
