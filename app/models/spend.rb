@@ -8,11 +8,23 @@ class Spend < ApplicationRecord
   private
 
   def self.display(year, month)
-    if month < 10
-      sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-0#{month}-01');"
+    if month == 12
+      next_year = year + 1
+      next_month = 1
     else
-      sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-#{month}-01');"
+      next_year = year
+      next_month = month + 1
     end
+
+    if month < 10
+      month = "0#{month}"
+    end
+
+    if next_month < 10
+      next_month = "0#{next_month}"
+    end 
+
+    sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-#{month}-01') AND day < DATE('#{next_year}-#{next_month}-01');"
     return Spend.find_by_sql(sql)
   end
 
@@ -38,5 +50,15 @@ class Spend < ApplicationRecord
       each_sums << each_sum
     end
     return each_sums
+  end
+
+  def self.day_sum(spend)
+    sql = "SELECT * FROM spends WHERE day = '#{spend.day.to_s}'"
+    spends = Spend.find_by_sql(sql)
+    sum = 0
+    spends.each do |s|
+      sum += s.money
+    end
+    return sum
   end
 end
