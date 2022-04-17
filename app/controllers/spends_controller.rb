@@ -27,6 +27,9 @@ class SpendsController < ApplicationController
     render json: { spend: spend, day_sum: day_sum, sum: sum }
   end
 
+  def update
+  end
+
   private
 
   def spend_params
