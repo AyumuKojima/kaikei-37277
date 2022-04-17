@@ -209,14 +209,34 @@
   align-items: center;
   font-size: 50px;
   color: red;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+}
+
+.month-show {
+  height: 45px;
+  margin-left: 40px;
+  width: 97%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: end;
+}
+
+.month-show-btn {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 100%;
+  margin-right: 10px;
+  padding: 0 20px;
+  background-color: rgb(212, 167, 255);
+  display: flex;
+  align-items: center;
+  color: white;
 }
 
 .calendar-main {
   width: 97%;
   height: 67vh;
   margin-left: 40px;
-  margin-top: 30px;
   background-color: rgb(251, 249, 249);
 }
 

@@ -12,6 +12,7 @@ require("../form-color")
 require("../category")
 require("../calendar")
 require("../post-spend")
+require("../month")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
