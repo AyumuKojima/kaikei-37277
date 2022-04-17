@@ -51,6 +51,7 @@
     <div class="spend-input">
       <div class="spend-form-text">支出を編集</div>
       <%= form_with url: "/years/#{@year}/months/#{@month}/spends", class: "spend-input-form", id: "form" do |f| %>
+        <%= f.text_field :index %>
         <div class="day-form">
           <%= raw sprintf(
                     f.date_select(
@@ -71,8 +72,10 @@
           {}, 
           {class: "spend-category-select"}) %>
         <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
-        <%= f.submit "支出を編集する", id: "submit" %>
-        <div>支出を削除する</div>
+        <div id="spend-show-btns" style="display: none;">
+          <%= f.submit "支出を編集する", id: "submit" %>
+          <div id="delete-btn">支出を削除する</div>
+        </div>
       <% end %>
     </div>
   </div>
