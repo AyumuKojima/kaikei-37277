@@ -1,34 +1,33 @@
 <div class="calendar-heading">
-  <a class="last-month-btn" href="#">◀︎</a>
-  <p id="display-year"><%= @display_month[0] %></p>年 <p id="display-month"><%= @display_month[1] %></p>月
-  <span id="wday_num"><%= Date.new(@display_month[0], @display_month[1], 1).wday %></span>
-  <a class="next-month-btn" href="#">▶︎</a>
+  <% if params[:month_id].to_i == 1 %>
+    <%= link_to '◀︎', year_month_spends_path(@year - 1, 12), class: "last-month-btn" %>
+  <% else %>
+    <%= link_to '◀︎', year_month_spends_path(@year, @month - 1), class: "last-month-btn" %>
+  <% end %>
+  <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
+  <span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
+  <% if @month == 12 %>
+    <%= link_to '▶︎', year_month_spends_path(@year + 1, 1), class: "next-month-btn" %>
+  <% else %>
+    <%= link_to '▶︎', year_month_spends_path(@year, @month + 1), class: "next-month-btn" %>
+  <% end %>
 </div>
-<div class="spend-sum">
+<div class="spend-sum" id="month-sum">
   合計出費額：<%= @sum %>円
 </div>
 
 <div class="calendar-main">
   <div class="wdays">
-    <div class="wday">日</div>
+    <div class="wday w-sunday">日</div>
     <div class="wday">月</div>
     <div class="wday">火</div>
     <div class="wday">水</div>
     <div class="wday">木</div>
     <div class="wday">金</div>
-    <div class="wday">土</div>
+    <div class="wday w-saturday">土</div>
   </div>
   <div class="dates">
     <div class="row">
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-      <div class="date row_1"></div>
-    </div>
-    <div class="row">
       <div class="date"></div>
       <div class="date"></div>
       <div class="date"></div>
@@ -66,6 +65,15 @@
     </div>
     <div class="row">
       <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+      <div class="date"></div>
+    </div>
+    <div class="row" id="bottom">
+      <div class="date" id="bottom-left"></div>
       <div class="date"></div>
       <div class="date"></div>
       <div class="date"></div>
@@ -76,6 +84,16 @@
   </div>
 </div>
 
-<% @each_sums.each do |each_sum| %>
-  <span class="each-sum"><%= each_sum %></span>
-<% end %>
+<div class="sum-data">
+  <% @each_sums.each do |each_sum| %>
+    <span class="this-month-sum-data"><%= each_sum %></span>
+  <% end %>
+
+  <% @last_month_sums.each do |last_month_sum| %>
+    <span class="last-month-sum-data"><%= last_month_sum %></span>
+  <% end %>
+
+  <% @next_month_sums.each do |next_month_sum| %>
+    <span class="next-month-sum-data"><%= next_month_sum %></span>
+  <% end %>
+</div>

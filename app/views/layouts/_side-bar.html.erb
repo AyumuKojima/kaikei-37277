@@ -1,13 +1,13 @@
 <div class="side-bar">
   <div class="contents-btns">
     <div class="contents-btn">
-      <%= link_to year_month_spends_path(Date.today.year, Date.today.month), class: "side-btn" do %>
+      <%= link_to year_month_spends_path(@year, @month), class: "side-btn" do %>
         <span><%= image_tag 'calendar.png', size: '50x50' %></span>
         支出を入力
       <% end %>
     </div>
     <div class="contents-btn">
-      <%= link_to year_month_categories_path(Date.today.year, Date.today.month), class: "side-btn" do %>
+      <%= link_to year_month_categories_path(@year, @month), class: "side-btn" do %>
         <span><%= image_tag 'category.png', size: '60x35' %></span>
         カテゴリー
       <% end %>
