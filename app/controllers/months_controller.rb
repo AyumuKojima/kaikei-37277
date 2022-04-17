@@ -9,5 +9,6 @@ class MonthsController < ApplicationController
     @sum = Spend.sum(@year, @month)
     @each_day_spends = Spend.get_each_day_spends(@year, @month)
     @select_categories = Category.add_for_index
+    @colors = Color.all
   end
 end
