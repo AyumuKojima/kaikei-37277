@@ -66,6 +66,7 @@ function month () {
       };
       const index = XHR.response.index;
       showInfos[index].setAttribute("style", "display: none;");
+      clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
     };
   });
 };
