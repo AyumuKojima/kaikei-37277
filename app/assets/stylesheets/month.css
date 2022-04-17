@@ -29,6 +29,10 @@
   display: flex;
 }
 
+.show-info:hover {
+  cursor: pointer;
+}
+
 .show-date {
   display: flex;
   align-items: center;
@@ -64,4 +68,12 @@
   overflow-x: scroll;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+#index {
+  display: none;
+}
+
+#update_id {
+  display: none;
 }

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'years#index'
   resources :years, only: :index do
     resources :months, only: [:index, :show] do
-      resources :spends, only: [:index, :create]
+      resources :spends, only: [:index, :create, :update]
       resources :categories, only: [:index, :create]
     end
   end

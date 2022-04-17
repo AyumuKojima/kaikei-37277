@@ -1,5 +1,5 @@
 class SpendsController < ApplicationController
-  before_action :set_spend, only: [:index, :create]
+  before_action :set_spend, only: [:index, :create, :update]
 
   def index
     @select_categories = Category.add_for_index
@@ -25,6 +25,15 @@ class SpendsController < ApplicationController
     day_sum = Spend.day_sum(spend)
     sum = Spend.sum(@year, @month)
     render json: { spend: spend, day_sum: day_sum, sum: sum }
+  end
+
+  def update
+    spend = Spend.find(params[:id])
+    old_spend_day = spend.day.day
+    spend.update(spend_params)
+    sum = Spend.sum(@year, @month)
+    index = params[:index].to_i
+    render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index }
   end
 
   private
