@@ -6,13 +6,9 @@ function month () {
   var categoryIds = [];
   if (categoryIds.length == 0) {
     for (let i=0; i < categoryMarks.length; i++) {
-      categoryIds.push(Number(categoryMarks[i].innerHTML)-1);
-      const rgb = colors[colorIds[categoryIds[i]].innerHTML].innerHTML;
-      categoryMarks[i].setAttribute("style", `color: rgb${rgb};`);
-      categoryMarks[i].innerHTML = categoryNames[categoryIds[i]].innerHTML;
+      categoryIds.push(setCategoryName(categoryMarks[i]));
     };
   };
-
   const showInfos = document.querySelectorAll(".show-info");
   const spendShowBtns = document.getElementById("spend-show-btns");
   const yearForm = document.getElementById("_day_1i");
@@ -24,8 +20,56 @@ function month () {
   const categoryForm = document.getElementById("category_id");
   const memoForm = document.getElementById("memo");
   const showMemos = document.querySelectorAll(".show-memo");
+  const updateIdForm = document.getElementById("update_id");
+  const indexForm = document.getElementById("index")
+  const spendIds = document.querySelectorAll(".show-id");
+  fillInForm(categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm);
+  const submitBtn = document.getElementById("spend-update-submit");
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('input[name="authenticity_token"]').value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    const form = document.getElementById("form");
+    const formData = new FormData(form);
+    XHR = setXHR(yearForm, monthForm, updateIdForm);
+    XHR.send(formData);
+
+    XHR.onload = () => {
+      if (XHR.status != 200) {
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        return null;
+      };
+      const oldSpendDay = XHR.response.old_spend_day;
+      const currentYear = document.getElementById("display-year").innerHTML;
+      const currentMonth = document.getElementById("display-month").innerHTML;
+      if (currentYear == yearForm.value && currentMonth == monthForm.value && oldSpendDay == dayForm.value) {
+        const item = XHR.response.spend;
+        const index = XHR.response.index;
+        setSum(XHR.response.sum);
+        updateSpendView(item, categoryMarks[index], showSpends[index], showMemos[index]);
+        clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
+      } else {
+        location.reload();
+      };
+    };
+  });
+};
+
+function setCategoryName (categoryMark) {
+  const categoryId = Number(categoryMark.innerHTML)-1;
+  const colorIds = document.querySelectorAll(".color-id");
+  const colors = document.querySelectorAll(".color");
+  const categoryNames = document.querySelectorAll(".category-name");
+  const rgb = colors[colorIds[categoryId].innerHTML].innerHTML;
+  categoryMark.setAttribute("style", `color: rgb${rgb};`);
+  categoryMark.innerHTML = categoryNames[categoryId].innerHTML;
+  return categoryId;
+};
+
+function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
+      setBorder(showInfos, showInfos[i]);
       spendShowBtns.setAttribute("style", "display: block;");
       const date = new Date(showDates[i].innerHTML);
       yearForm.value = date.getFullYear();
@@ -34,9 +78,52 @@ function month () {
       moneyForm.value = parseInt(showSpends[i].innerHTML, 10);
       categoryForm.value = categoryIds[i]+1;
       memoForm.value = showMemos[i].innerHTML.trim();
+      updateIdForm.value = spendIds[i].innerHTML.trim();
+      indexForm.value = i;
     });
   };
+};
 
+function setBorder (showInfos, showInfo) {
+  const borderStyle = "border:3px solid deeppink;"
+  for (let k=0; k < showInfos.length; k++) {
+    if (showInfos[k].getAttribute("style") == borderStyle) {
+      showInfos[k].removeAttribute("style")
+    };
+  };
+  showInfo.setAttribute("style", borderStyle);
+};
+
+function setXHR (year, month, updateId) {
+  const XHR = new XMLHttpRequest();
+  XHR.open('PATCH', `/years/${year.value}/months/${month.value}/spends/${updateId.value}`, true);
+  XHR.responseType = "json";
+  return XHR;
+};
+
+function setSum (sum) {
+  const monthSum = document.getElementById("month-sum");
+  monthSum.innerHTML = `合計出費額：${sum}円`;
+};
+
+function updateSpendView (item, categoryMark, showSpend, showMemo) {
+  categoryMark.innerHTML = item.category_id;
+  setCategoryName(categoryMark);
+  showSpend.innerHTML = `${item.money}円`;
+  showMemo.innerHTML = item.memo;
+};
+
+function clearForm (moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, btns) {
+  moneyForm.value = "";
+  categoryForm.value = 0;
+  memoForm.value = "";
+  updateIdForm.value = "";
+  indexForm.value = "";
+  const today = new Date();
+  yearForm.value = today.getFullYear();
+  monthForm.value = today.getMonth()+1;
+  dayForm.value = today.getDate();
+  btns.setAttribute('style', "display: none;");
 };
 
 window.addEventListener('turbolinks:load', month);
