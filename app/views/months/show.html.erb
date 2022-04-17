@@ -18,28 +18,34 @@
         <% end %>
       </div>
       <div class="spend-sum" id="month-sum">
-        合計出費額：<%= 40000 %>円
+        合計出費額：<%= @sum %>円
       </div>
       <div class="show-list">
-        <div class="show-box">
-          <div class="show-day">
-            17日
-          </div>
-          <div class="show-info">
-            <div class="show-date">
-              2022-04-17
-            </div>
-            <div class="category-mark">
-              食費
-            </div>
-            <div class="show-spend">
-              1000円
-            </div>
-            <div class="show-memo">
-              寿司屋で外食。
-            </div>
-          </div>
+        <div class="show-day">
+          支出一覧
         </div>
+        <% Date.new(@year, @month, 1).end_of_month.day.times do |i| %>
+          <% if @each_day_spends[i].length != 0 %>
+            <div class="show-box">
+              <% @each_day_spends[i].each do |spend| %>
+                <div class="show-info">
+                  <div class="show-date">
+                    <%= spend.day.to_s %>
+                  </div>
+                  <div class="category-mark">
+                    <%= spend.category_id %>
+                  </div>
+                  <div class="show-spend">
+                    <%= spend.money %>円
+                  </div>
+                  <div class="show-memo">
+                    <%= spend.memo %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

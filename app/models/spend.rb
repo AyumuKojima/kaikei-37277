@@ -28,6 +28,28 @@ class Spend < ApplicationRecord
     return Spend.find_by_sql(sql)
   end
 
+  def self.get_each_day_spends(year, month)
+    if month < 10
+      month_ = "0#{month}"
+    else
+      month_ = month
+    end
+    each_day_spends = []
+    Date.new(year, month, 1).end_of_month.day.times do |i|
+      spends = []
+      if i+1 < 10
+        day = "0#{i+1}"
+      else
+        day = i+1
+      end
+
+      sql = "SELECT * FROM spends WHERE day = DATE('#{year}-#{month_}-#{day}')"
+      spends = Spend.find_by_sql(sql)
+      each_day_spends << spends
+    end
+    return each_day_spends
+  end
+
   def self.sum(year, month)
     spends = Spend.display(year, month)
     sum = 0
