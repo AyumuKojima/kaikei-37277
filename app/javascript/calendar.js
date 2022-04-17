@@ -5,7 +5,9 @@ function calendar () {
   const displayMonth = document.getElementById("display-month").innerHTML;
   const dates = document.querySelectorAll(".date");
   const wDayNum = document.getElementById("wday_num").innerHTML;
-  setDateNumber(displayYear, displayMonth, dates, wDayNum);
+  if (dates[0].innerHTML == "") {
+    setDateNumber(displayYear, displayMonth, dates, wDayNum);
+  };
 
   const thisMonthSumData = document.querySelectorAll(".this-month-sum-data");
   const thisMonthSums = document.querySelectorAll(".this-month-sum");
@@ -104,7 +106,7 @@ function setDateNumber (year, month, dates, wDayNum) {
 
 function setMonthSums (monthSumData, monthSums) {
   for (let i=0; i < monthSums.length; i++) {
-    if (monthSumData[i].innerHTML != 0) {
+    if (monthSumData[i].innerHTML != 0 && monthSums[i].innerHTML == "") {
       monthSums[i].insertAdjacentHTML('afterbegin', `${monthSumData[i].innerHTML}円`);
     };
   };
@@ -114,7 +116,7 @@ function setLastMonthSums (lastMonthSumData, lastMonthSums) {
   let k = 0
   for (let i=0; i < lastMonthSums.length; i++) {
     k = lastMonthSumData.length - lastMonthSums.length + i;
-    if (lastMonthSumData[k].innerHTML != 0) {
+    if (lastMonthSumData[k].innerHTML != 0 && lastMonthSums[i].innerHTML == "") {
       lastMonthSums[i].insertAdjacentHTML('afterbegin', `${lastMonthSumData[k].innerHTML}円`);
     };
   };
