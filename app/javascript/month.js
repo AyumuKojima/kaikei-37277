@@ -1,8 +1,5 @@
 function month () {
   const categoryMarks = document.querySelectorAll(".category-mark");
-  const colorIds = document.querySelectorAll(".color-id");
-  const colors = document.querySelectorAll(".color");
-  const categoryNames = document.querySelectorAll(".category-name");
   var categoryIds = [];
   if (categoryIds.length == 0) {
     for (let i=0; i < categoryMarks.length; i++) {
@@ -24,14 +21,15 @@ function month () {
   const indexForm = document.getElementById("index")
   const spendIds = document.querySelectorAll(".show-id");
   fillInForm(categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm);
+
   const submitBtn = document.getElementById("spend-update-submit");
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('input[name="authenticity_token"]').value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    adjustToken();
 
     const form = document.getElementById("form");
     const formData = new FormData(form);
-    XHR = setXHR(yearForm, monthForm, updateIdForm);
+    XHR = setUpdateXHR(yearForm, monthForm, updateIdForm);
     XHR.send(formData);
 
     XHR.onload = () => {
@@ -51,6 +49,23 @@ function month () {
       } else {
         location.reload();
       };
+    };
+  });
+
+  const spendDeleteBtn = document.getElementById("spend-delete-btn");
+  spendDeleteBtn.addEventListener('click', () => {
+    adjustToken()
+    const form = document.getElementById("form");
+    const formData = new FormData(form);
+    XHR = setDeleteXHR(yearForm, monthForm, updateIdForm);
+    XHR.send(formData);
+    XHR.onload = () => {
+      if (XHR.status != 200) {
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        return null;
+      };
+      const index = XHR.response.index;
+      showInfos[index].setAttribute("style", "display: none;");
     };
   });
 };
@@ -94,12 +109,23 @@ function setBorder (showInfos, showInfo) {
   showInfo.setAttribute("style", borderStyle);
 };
 
-function setXHR (year, month, updateId) {
+function adjustToken () {
+  document.querySelector('input[name="authenticity_token"]').value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+};
+
+function setUpdateXHR (year, month, updateId) {
   const XHR = new XMLHttpRequest();
   XHR.open('PATCH', `/years/${year.value}/months/${month.value}/spends/${updateId.value}`, true);
   XHR.responseType = "json";
   return XHR;
 };
+
+function setDeleteXHR (year, month, deleteId) {
+  const XHR = new XMLHttpRequest();
+  XHR.open('DELETE', `/years/${year.value}/months/${month.value}/spends/${deleteId.value}`, true);
+  XHR.responseType = "json";
+  return XHR;
+}
 
 function setSum (sum) {
   const monthSum = document.getElementById("month-sum");

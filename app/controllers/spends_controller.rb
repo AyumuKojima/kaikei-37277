@@ -36,6 +36,13 @@ class SpendsController < ApplicationController
     render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index }
   end
 
+  def destroy
+    spend = Spend.find(params[:id])
+    spend.destroy
+    index = params[:index].to_i
+    render json: { index: index }
+  end
+
   private
 
   def spend_params

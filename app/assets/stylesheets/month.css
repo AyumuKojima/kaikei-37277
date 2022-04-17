@@ -77,3 +77,7 @@
 #update_id {
   display: none;
 }
+
+#spend-delete-btn:hover {
+  cursor: pointer;
+}
