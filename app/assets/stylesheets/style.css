@@ -233,6 +233,17 @@
   height: 100%;
   border: 1px solid black;
   border-bottom: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.w-sunday {
+  color: red;
+}
+
+.w-saturday {
+  color: blue;
 }
 
 .sunday {
