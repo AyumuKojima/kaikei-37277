@@ -4,5 +4,7 @@ class MonthsController < ApplicationController
   end
 
   def show
+    @month = params[:id].to_i
+    @year = params[:year_id].to_i
   end
 end

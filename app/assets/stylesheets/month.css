@@ -1,0 +1,61 @@
+.show-list {
+  height: calc(100% - 180px);
+  padding-top: 10px;
+  margin-top: 30px;
+  overflow: scroll;
+}
+
+.show-box {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.show-day {
+  width: 100%;
+  height: 40px;
+  background-color: rgb(108, 200, 200);
+  font-size: 23px;
+  text-align: center;
+  padding: 8px 10px;
+}
+
+.show-info {
+  height: 40px;
+  background-color: rgb(255, 245, 232);
+  border: 1px solid black;
+  display: flex;
+}
+
+.show-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 19%;
+  font-size: 1.2vw;
+}
+.category-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18%;
+  font-size: 1.2vw;
+  border-left: 2px solid lightgrey;
+}
+
+.show-spend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 19%;
+  font-size: 1.2vw;
+  border-left: 2px solid lightgrey;
+}
+
+.show-memo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44%;
+  font-size: 1.2vw;
+  border-left: 2px solid lightgrey;
+}
