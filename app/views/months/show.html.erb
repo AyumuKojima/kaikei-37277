@@ -5,16 +5,16 @@
     <div class="calendar">
       <div class="calendar-heading">
         <% if @month == 1 %>
-          <%= link_to '◀︎', year_month_spends_path(@year - 1, 12), class: "last-month-btn" %>
+          <%= link_to '◀︎', year_month_path(@year - 1, 12), class: "last-month-btn" %>
         <% else %>
-          <%= link_to '◀︎', year_month_spends_path(@year, @month - 1), class: "last-month-btn" %>
+          <%= link_to '◀︎', year_month_path(@year, @month - 1), class: "last-month-btn" %>
         <% end %>
         <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
         <span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
         <% if @month == 12 %>
-          <%= link_to '▶︎', year_month_spends_path(@year + 1, 1), class: "next-month-btn" %>
+          <%= link_to '▶︎', year_month_path(@year + 1, 1), class: "next-month-btn" %>
         <% else %>
-          <%= link_to '▶︎', year_month_spends_path(@year, @month + 1), class: "next-month-btn" %>
+          <%= link_to '▶︎', year_month_path(@year, @month + 1), class: "next-month-btn" %>
         <% end %>
       </div>
       <div class="spend-sum" id="month-sum">
@@ -47,6 +47,33 @@
           <% end %>
         <% end %>
       </div>
+    </div>
+    <div class="spend-input">
+      <div class="spend-form-text">支出を編集</div>
+      <%= form_with url: "/years/#{@year}/months/#{@month}/spends", class: "spend-input-form", id: "form" do |f| %>
+        <div class="day-form">
+          <%= raw sprintf(
+                    f.date_select(
+                      :day,
+                      use_month_numbers: true,
+                      default: Date.today,
+                      start_year: (Date.today.year - 50),
+                      end_year: (Date.today.year + 10),
+                      date_separator: '%s'),
+                    "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
+        </div>
+        <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
+        <%= f.collection_select(
+          :category_id,
+          @select_categories,
+          :id, 
+          :title, 
+          {}, 
+          {class: "spend-category-select"}) %>
+        <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
+        <%= f.submit "支出を編集する", id: "submit" %>
+        <div>支出を削除する</div>
+      <% end %>
     </div>
   </div>
 </div>
