@@ -39,7 +39,8 @@ class SpendsController < ApplicationController
   def destroy
     spend = Spend.find(params[:id])
     spend.destroy
-    render json: {}
+    index = params[:index].to_i
+    render json: { index: index }
   end
 
   private
