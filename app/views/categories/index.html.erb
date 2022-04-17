@@ -51,7 +51,7 @@
           新規カテゴリー
         </div>
       </div>
-      <%= form_with model: @category, class: "new-category-box-footer", local: true do |f| %>
+      <%= form_with  class: "new-category-box-footer", local: true do |f| %>
         <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
         <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
         <div class="category-input">

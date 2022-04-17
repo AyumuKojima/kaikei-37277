@@ -1,51 +1,12 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:index, :create]
 
   def index
-    @categories = Category.all
     @category = Category.new
-    @colors = Color.all
-    @sum = 0
-    @categories.each do |category|
-      category.spends.each do |spend|
-        @sum += spend.money
-      end
-    end
-    @each_sums = []
-    @categories.each do |category|
-      each_sum = 0
-      category.spends.each do |spend|
-        each_sum += spend.money
-      end
-      @each_sums << each_sum
-    end
-    @each_props = []
-    @each_sums.each do |each_sum|
-      @each_props << (each_sum * 100 / @sum).floor
-    end
   end
 
   def create
-    @categories = Category.all
     @category = Category.new(category_params)
-    @colors = Color.all
-    @sum = 0
-    @categories.each do |category|
-      category.spends.each do |spend|
-        @sum += spend.money
-      end
-    end
-    @each_sums = []
-    @categories.each do |category|
-      each_sum = 0
-      category.spends.each do |spend|
-        each_sum += spend.money
-      end
-      @each_sums << each_sum
-    end
-    @each_props = []
-    @each_sums.each do |each_sum|
-      @each_props << (each_sum * 100 / @sum).floor
-    end
     
     if @category.save
       redirect_to categories_path
@@ -58,5 +19,18 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:title, :color_id).merge(user_id: current_user.id)
+  end
+
+  def set_category
+    @year = params[:year_id].to_i
+    @month = params[:month_id].to_i
+    if @year > Date.today.year + 10 || @year < Date.today.year - 50 || @month > 12 || @month < 1
+      redirect_to year_month_spends_path(Date.today.year, Date.today.month)
+    end
+    @categories = Category.all
+    @colors = Color.all
+    @sum = Spend.sum(@year, @month)
+    @each_sums = Spend.get_each_category_sums(@year, @month)
+    @each_props = Spend.get_each_category_props(@year, @month)
   end
 end

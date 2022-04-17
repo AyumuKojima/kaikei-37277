@@ -83,4 +83,29 @@ class Spend < ApplicationRecord
     end
     return sum
   end
+
+  def self.get_each_category_sums(year, month)
+    each_category_sums = []
+    Category.all.each do
+      each_category_sums << 0
+    end
+    spends = Spend.display(year, month)
+    spends.each do |spend|
+      each_category_sums[spend.category_id-1] += spend.money
+    end
+    return each_category_sums
+  end
+
+  def self.get_each_category_props(year, month)
+    each_category_sums = Category.get_each_category_sums(year, month)
+    each_category_props = []
+    Category.all.each do
+      each_category_props << 0
+    end
+    sum = Spend.sum(year, month)
+    each_category_props.length.times do |i|
+      each_category_props[i] = (each_category_sums[i] * 100 / sum).floor
+    end
+    return each_category_props
+  end
 end
