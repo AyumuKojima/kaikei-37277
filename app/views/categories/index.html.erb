@@ -4,9 +4,20 @@
   <div class="container">
     <div class="categories">
       <div class="category-month">
-        <div class="category-arrow">◀︎</div>
-        2022年 4月
-        <div class="category-arrow">▶︎</div>
+        <div class="calendar-heading">
+          <% if @month == 1 %>
+            <%= link_to '◀︎', year_month_categories_path(@year - 1, 12), class: "last-month-btn" %>
+          <% else %>
+            <%= link_to '◀︎', year_month_categories_path(@year, @month - 1), class: "last-month-btn" %>
+          <% end %>
+          <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
+          <span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
+          <% if @month == 12 %>
+            <%= link_to '▶︎', year_month_categories_path(@year + 1, 1), class: "next-month-btn" %>
+          <% else %>
+            <%= link_to '▶︎', year_month_categories_path(@year, @month + 1), class: "next-month-btn" %>
+          <% end %>
+        </div>
       </div>
       <div class="category-spend-sum">
         合計出費額：<%= @sum %>円
@@ -51,12 +62,12 @@
           新規カテゴリー
         </div>
       </div>
-      <%= form_with model: @category, class: "new-category-box-footer", local: true do |f| %>
+      <%= form_with url: "/years/#{@year}/months/#{@month}/categories", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
         <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
         <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
         <div class="category-input">
           <div class="category-input-btn" id="category-input-btn">
-            <%= f.submit "カテゴリーを追加する", class: "category-post-submit-btn" %>
+            <%= f.submit "カテゴリーを追加する", class: "category-post-submit-btn", id: "post-category-submit" %>
           </div>
         </div>
       <% end %>
