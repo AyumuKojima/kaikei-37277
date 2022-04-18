@@ -103,8 +103,10 @@ class Spend < ApplicationRecord
       each_category_props << 0
     end
     sum = Spend.sum(year, month)
-    each_category_props.length.times do |i|
-      each_category_props[i] = (each_category_sums[i] * 100 / sum).floor
+    if sum != 0
+      each_category_props.length.times do |i|
+        each_category_props[i] = (each_category_sums[i] * 100 / sum).floor
+      end
     end
     return each_category_props
   end
