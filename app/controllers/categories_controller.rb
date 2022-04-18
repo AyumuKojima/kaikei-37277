@@ -7,9 +7,8 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    
     if @category.save
-      redirect_to categories_path
+      redirect_to year_month_categories_path(@year, @month)
     else
       render :index
     end
@@ -18,7 +17,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:title, :color_id).merge(user_id: current_user.id)
+    params.permit(:title, :color_id).merge(user_id: current_user.id)
   end
 
   def set_category

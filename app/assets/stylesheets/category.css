@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
   padding-top: 20px;
+  overflow: scroll;
 }
 
 .category-month {
@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
 }
 
 .category-box {
@@ -71,7 +72,7 @@
   margin-left: 15px;
   display: flex;
   align-items: center;
-  font-size: 40px;
+  font-size: 2vw;
 }
 
 .category-btns {
@@ -82,10 +83,10 @@
 }
 
 .category-btn {
-  width: 50%;
+  width: 40%;
   color: white;
   margin: 8px 5px;
-  font-size: 1vw;
+  font-size: 0.8vw;
   border: 0 solid;
   border-radius: 10px;
 }
@@ -115,7 +116,7 @@
 .category-money-sum {
   display: flex;
   align-items: center;
-  font-size: 45px;
+  font-size: 2vw;
   width: 400px;
   height: 100%;
   margin-left: 15px;
@@ -126,8 +127,9 @@
   display: flex;
   justify-content: space-between;
   width: 94%;
+  height: 10%;
   margin-left: 18px;
-  font-size: 13px;
+  font-size: 0.4vw;
   color: orange;
 }
 
