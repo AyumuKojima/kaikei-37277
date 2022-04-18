@@ -97,7 +97,7 @@ class Spend < ApplicationRecord
   end
 
   def self.get_each_category_props(year, month)
-    each_category_sums = Category.get_each_category_sums(year, month)
+    each_category_sums = Spend.get_each_category_sums(year, month)
     each_category_props = []
     Category.all.each do
       each_category_props << 0
