@@ -31,7 +31,7 @@
               </div>
               <div class="category-btns">
                 <div class="category-show category-btn">
-                  <a class="btn" href="#">詳細</a>
+                  <%= link_to "詳細", year_month_category_path(@year, @month, category.id), class: "btn" %>
                 </div>
                 <div class="category-delete category-btn">
                   <a class="btn" href="#">削除</a>
