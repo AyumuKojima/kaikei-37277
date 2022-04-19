@@ -59,7 +59,7 @@
   margin-bottom: 5px;
 }
 
-.contents-btns {
+.side-btns {
   height: 50%;
   width: 100%;
   display: flex;
@@ -68,15 +68,10 @@
   align-items: center;
 }
 
-.contents-btn {
-  height: 90px;
-  width: 90px;
-}
-
 .side-btn {
   display: block;
-  height: 100%;
-  width: 100%;
+  height: 90px;
+  width: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,15 +82,16 @@
   font-size: 12px;
 }
 
-.main {
+.container {
   display: flex;
-  height: calc(100vh - 70px)
+  height: calc(100vh - 7.5vh)
 }
 
 
 .side-bar {
   background-color: rgb(165, 105, 221);
-  width: 110px;
+  height: 100%;
+  width: 6vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -199,10 +195,18 @@
   align-items: center;
 }
 
-
 .contents {
-  width: calc(100vw - 110px);
+  width: 94vw;
   display: flex;
+}
+
+.main-contents {
+  width: 70%;
+}
+
+.sub-contents {
+  width: 30%;
+  border-left: 3px solid;
 }
 
 .calendar {
