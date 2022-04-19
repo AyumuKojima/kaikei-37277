@@ -144,6 +144,18 @@
   border-color: rgb(0, 164, 150);
 }
 
+.edit-category {
+  width: 23%;
+  height: 400px;
+  border: 4px solid;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  margin-top: 5%;
+  margin-left: 20px;
+  border-color: rgb(0, 164, 150);
+  display: block;
+}
+
 .new-category-box-header {
   display: flex;
   justify-content: space-between;
@@ -216,4 +228,28 @@
 
 .field_with_errors {
   display: contents;
+}
+
+#category-edit-btn:hover {
+  cursor: pointer;
+}
+
+.category-show-list {
+  height: calc(100% - 330px);
+  width: 100%;
+  padding-top: 10px;
+  margin-top: 30px;
+  overflow: scroll;
+}
+
+.category-show-day {
+  width: 80%;
+  margin-left: 10%;
+  height: 50px;
+  background-color: rgb(147, 235, 235);
+  font-size: 1.4vw;
+  color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
