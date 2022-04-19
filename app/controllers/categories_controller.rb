@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:index, :create]
+  before_action :set_category, only: [:index, :create, :show]
 
   def index
     @category = Category.new
@@ -12,6 +12,11 @@ class CategoriesController < ApplicationController
     else
       render :index
     end
+  end
+
+  def show
+    @category = Category.find(params[:id])
+    @each_day_spends = Spend.get_each_day_spends(@year, @month)
   end
 
   private
