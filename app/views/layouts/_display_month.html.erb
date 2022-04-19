@@ -25,7 +25,7 @@
 <% end %>
 
 <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
-<span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
+<span id="wday_num" style="display: none;"><%= Date.new(@year, @month, 1).wday %></span>
 
 <% if current_page?("/years/#{@year}/months/#{@month}/spends") %>
   <% if @month == 12 %>

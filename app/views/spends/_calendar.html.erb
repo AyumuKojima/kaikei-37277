@@ -1,85 +1,87 @@
-<div class="month-show">
-  <%= link_to "支出一覧を表示", year_month_path(@year, @month), class: "month-show-btn" %>
-</div>
-
-<div class="calendar-main">
-  <div class="wdays">
-    <div class="wday w-sunday">日</div>
-    <div class="wday">月</div>
-    <div class="wday">火</div>
-    <div class="wday">水</div>
-    <div class="wday">木</div>
-    <div class="wday">金</div>
-    <div class="wday w-saturday">土</div>
+<div class="calendar centering">
+  <div class="month-show">
+    <%= link_to "支出一覧を表示", year_month_path(@year, @month), class: "month-show-btn" %>
   </div>
-  <div class="dates">
-    <div class="row">
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
+
+  <div class="calendar-main">
+    <div class="wdays">
+      <div class="wday w-sunday">日</div>
+      <div class="wday">月</div>
+      <div class="wday">火</div>
+      <div class="wday">水</div>
+      <div class="wday">木</div>
+      <div class="wday">金</div>
+      <div class="wday w-saturday">土</div>
     </div>
-    <div class="row">
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-    </div>
-    <div class="row">
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-    </div>
-    <div class="row">
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-    </div>
-    <div class="row">
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-    </div>
-    <div class="row" id="bottom">
-      <div class="date" id="bottom-left"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
-      <div class="date"></div>
+    <div class="dates">
+      <div class="row">
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
+      <div class="row">
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
+      <div class="row">
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
+      <div class="row">
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
+      <div class="row">
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
+      <div class="row" id="bottom">
+        <div class="date" id="bottom-left"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+        <div class="date"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="sum-data">
-  <% @each_sums.each do |each_sum| %>
-    <span class="this-month-sum-data"><%= each_sum %></span>
-  <% end %>
+  <div class="sum-data">
+    <% @each_sums.each do |each_sum| %>
+      <span class="this-month-sum-data"><%= each_sum %></span>
+    <% end %>
 
-  <% @last_month_sums.each do |last_month_sum| %>
-    <span class="last-month-sum-data"><%= last_month_sum %></span>
-  <% end %>
+    <% @last_month_sums.each do |last_month_sum| %>
+      <span class="last-month-sum-data"><%= last_month_sum %></span>
+    <% end %>
 
-  <% @next_month_sums.each do |next_month_sum| %>
-    <span class="next-month-sum-data"><%= next_month_sum %></span>
-  <% end %>
+    <% @next_month_sums.each do |next_month_sum| %>
+      <span class="next-month-sum-data"><%= next_month_sum %></span>
+    <% end %>
+  </div>
 </div>

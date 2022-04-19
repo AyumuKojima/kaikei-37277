@@ -6,6 +6,6 @@
     <%= render partial: "layouts/display_month" %>
   </div>
   <div class="header-sum centering">
-    合計支出額： <p class="month-sum centering" id="month-sum"><%= @sum %></p> <p class="en">円</p>
+    合計支出額： <p class="month-sum centering" id="month-sum"><%= @sum.to_s(:delimited) %></p> <p class="en">円</p>
   </div>
 </div>

@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.pointer:hover {
+  cursor: pointer;
+}
+
 .header {
   background-color: aquamarine;
   height: 7.5vh;
@@ -33,6 +37,18 @@
   width: 30%;
   font-size: 1.7vw;
   color: rgb(81, 71, 71);
+}
+
+.last-month-btn {
+  margin-right: 10px;
+}
+
+#display-month {
+  margin-left: 15px;
+}
+
+.next-month-btn {
+  margin-left: 10px;
 }
 
 .header-sum {
@@ -201,262 +217,10 @@
 }
 
 .main-contents {
-  width: 70%;
+  width: 75%;
 }
 
 .sub-contents {
-  width: 30%;
-  border-left: 3px solid;
-}
-
-.calendar {
-  width: 75%;
-  padding: 5px 20px;
-}
-
-.calendar-heading {
-  margin: 15px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  color: black;
-}
-
-.last-month-btn {
-  margin-right: 10px;
-}
-
-#display-month {
-  margin-left: 15px;
-}
-
-.next-month-btn {
-  margin-left: 10px;
-}
-
-.spend-sum {
-  height: 50px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  color: red;
-  margin-bottom: 10px;
-}
-
-.month-show {
-  height: 45px;
-  margin-left: 40px;
-  width: 97%;
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: end;
-}
-
-.month-show-btn {
-  border: 1px solid black;
-  border-radius: 10px;
-  height: 100%;
-  margin-right: 10px;
-  padding: 0 20px;
-  background-color: rgb(212, 167, 255);
-  display: flex;
-  align-items: center;
-  color: white;
-}
-
-.calendar-main {
-  width: 97%;
-  height: 67vh;
-  margin-left: 40px;
-  background-color: rgb(251, 249, 249);
-}
-
-.wdays {
-  width: 100%;
-  border: 1px solid black;
-  height: 7%;
-  display: flex;
-  background-color: rgb(252, 248, 230);
-}
-
-.wday {
-  width: calc(100% / 7);
-  height: 100%;
-  border: 1px solid black;
-  border-bottom: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.w-sunday {
-  color: red;
-}
-
-.w-saturday {
-  color: blue;
-}
-
-.sunday {
-  background-color: rgb(252, 237, 237);
-}
-
-.saturday {
-  background-color: rgb(232, 232, 250);
-}
-
-.dates {
-  width: 100%;
-  height: 93%;
-}
-
-.row {
-  width: 100%;
-  display: flex;
-  height: calc(100% / 6);
-}
-
-.date {
-  width: calc(100% / 7);
-  border: 1px solid grey;
-}
-
-.date:hover {
-  cursor: pointer;
-}
-
-.date-num {
-  height: 30%;
-  width: 100%;
-  padding: 5px;
-}
-
-.day-sum {
-  height: 70%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.1vw;
-  color: rgb(138, 26, 194);
-}
-
-.spend-input {
   width: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spend-form-text {
-  margin-top: 100px;
-  margin-bottom: 30px;
-  font-size: 30px;
-}
-
-.spend-input-form {
-  border: 3px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  width: 80%;
-  height: 60%;
-}
-
-.day-form {
-  height: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.year {
-  margin-left: 5px;
-  margin-right: 15px;
-}
-
-.month {
-  margin-left: 5px;
-  margin-right: 15px;
-}
-
-.day {
-  margin-left: 5px;
-}
-
-#_day_1i {
-  padding-left: 3px;
-  width: 20%;
-  height: 60%;
-  font-size: 1vw;
-  border: 1px solid grey;
-  border-radius: 4px;
-}
-
-#_day_1i:hover {
-  cursor: pointer;
-}
-
-#_day_2i {
-  padding-left: 3px;
-  width: 12%;
-  height: 60%;
-  font-size: 1.1vw;
-  border: 1px solid grey;
-  border-radius: 4px;
-}
-
-#_day_2i:hover {
-  cursor: pointer;
-}
-
-#_day_3i {
-  padding-left: 3px;
-  width: 12%;
-  height: 60%;
-  font-size: 1.1vw;
-  border: 1px solid grey;
-  border-radius: 4px;
-}
-
-#_day_3i:hover {
-  cursor: pointer;
-}
-
-.spend-money-input-form {
-  display: block;
-  width: 100%;
-  height: 30px;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 6px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-.spend-category-select {
-  border: 1px solid grey;
-  border-radius: 3px;
-  padding: 5px;
-}
-
-.spend-memo-form {
-  display: block;
-  width: 100%;
-  height: 20%;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 6px;
-  margin-top: 10px;
-}
-
-#wday_num {
-  display: none;
-}
-
-.sum-data {
-  display: none;
+  border-left: 3px solid;
 }
