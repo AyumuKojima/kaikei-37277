@@ -86,8 +86,8 @@
 
 .side-btn {
   display: block;
-  height: 90px;
-  width: 90px;
+  height: 21%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,7 +95,22 @@
   border: 3px solid black;
   border-radius: 10px;
   background-color: rgb(194, 140, 245);
-  font-size: 12px;
+  font-size: 0.4vw;
+}
+
+.size1 {
+  width: 57%;
+  height: 57%;
+}
+
+.size2 {
+  width: 70%;
+  height: 43%;
+}
+
+.size3 {
+  width: 59%;
+  height: 61%;
 }
 
 .container {
