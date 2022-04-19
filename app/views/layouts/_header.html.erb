@@ -1,5 +1,11 @@
 <div class="header">
-  <div class="header-logo">
-    <%= link_to "KaiKei", root_path, class: "logo" %>
+  <div class="header-logo centering">
+    <%= link_to "Spend Manager", root_path, class: "logo centering" %>
+  </div>
+  <div class="header-month centering">
+    <%= render partial: "layouts/display_month" %>
+  </div>
+  <div class="header-sum centering">
+    合計支出額： <p class="month-sum centering" id="month-sum"><%= @sum %></p> <p class="en">円</p>
   </div>
 </div>

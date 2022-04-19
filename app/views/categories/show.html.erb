@@ -3,22 +3,6 @@
   <%= render partial: 'layouts/side-bar' %>
   <div class="container">
     <div class="categories">
-      <div class="category-month">
-        <div class="calendar-heading">
-          <% if @month == 1 %>
-            <%= link_to '◀︎', year_month_categories_path(@year - 1, 12), class: "last-month-btn" %>
-          <% else %>
-            <%= link_to '◀︎', year_month_categories_path(@year, @month - 1), class: "last-month-btn" %>
-          <% end %>
-          <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
-          <span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
-          <% if @month == 12 %>
-            <%= link_to '▶︎', year_month_categories_path(@year + 1, 1), class: "next-month-btn" %>
-          <% else %>
-            <%= link_to '▶︎', year_month_categories_path(@year, @month + 1), class: "next-month-btn" %>
-          <% end %>
-        </div>
-      </div>
       <div class="category-box">
         <div class="category-box-header">
           <div class="category-name">

@@ -1,21 +1,3 @@
-<div class="calendar-heading">
-  <% if @month == 1 %>
-    <%= link_to '◀︎', year_month_spends_path(@year - 1, 12), class: "last-month-btn" %>
-  <% else %>
-    <%= link_to '◀︎', year_month_spends_path(@year, @month - 1), class: "last-month-btn" %>
-  <% end %>
-  <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
-  <span id="wday_num"><%= Date.new(@year, @month, 1).wday %></span>
-  <% if @month == 12 %>
-    <%= link_to '▶︎', year_month_spends_path(@year + 1, 1), class: "next-month-btn" %>
-  <% else %>
-    <%= link_to '▶︎', year_month_spends_path(@year, @month + 1), class: "next-month-btn" %>
-  <% end %>
-</div>
-<div class="spend-sum" id="month-sum">
-  合計出費額：<%= @sum %>円
-</div>
-
 <div class="month-show">
   <%= link_to "支出一覧を表示", year_month_path(@year, @month), class: "month-show-btn" %>
 </div>

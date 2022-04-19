@@ -1,27 +1,62 @@
-.header {
-  background-color: blueviolet;
-  height: 70px;
-  display: flex;
-  align-items: center;
-}
-
-.header-logo {
-  width: 200px;
+.centering {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.logo {
-  color: rgb(240, 152, 123);
-  font-size: 50px;
-  font-weight: bold;
-  font-style: italic;
-  width: 190px;
-  height: 100px;
+.header {
+  background-color: aquamarine;
+  height: 7.5vh;
+  width: 100vw;
   display: flex;
   align-items: center;
-  padding-left: 5px;
+  justify-content: space-between;
+}
+
+.header-logo {
+  height: 80%;
+  width: 15%;
+  margin-left: 5px;
+}
+
+.logo {
+  color: rgb(240, 152, 123);
+  font-size: 1.7vw;
+  font-weight: bold;
+  font-style: italic;
+  width: 100%;
+  height: 100%;
+}
+
+.header-month {
+  height: 80%;
+  width: 30%;
+  font-size: 1.7vw;
+  color: rgb(81, 71, 71);
+}
+
+.header-sum {
+  height: 60%;
+  width: 40%;
+  justify-content: left;
+  font-size: 1vw;
+}
+
+.month-sum {
+  font-size: 1.7vw;
+  height: 100%;
+  width: 30%;
+  justify-content: end;
+  padding-right: 5px;
+  margin-right: 8px;
+  border: 1px solid black;
+}
+
+.en {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 5px;
 }
 
 .contents-btns {
@@ -173,10 +208,6 @@
 .calendar {
   width: 75%;
   padding: 5px 20px;
-}
-
-.simple-calendar .day {
-  height: 100px;
 }
 
 .calendar-heading {
