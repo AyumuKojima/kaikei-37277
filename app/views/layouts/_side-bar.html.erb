@@ -19,19 +19,19 @@
   </div>
   <div class="user-btns">
     <div class="user-btn">
-      <a class="setting-btn" href="#">
+      <a class="setting-btn btn" href="#">
         <span><%= image_tag 'setting.png', size: '40x40' %></span>
       </a>
     </div>
     <div class="user-btn">
-      <span id="user-btn"><%= image_tag 'user.png', size: '40x40', id: "user-btn" %></span>
+      <span id="user-btn" class="centering pointer"><%= image_tag 'user.png', size: '40x40', id: "user-btn" %></span>
       <div class="user" id="user">
         <div class="user-info">
           <div class="info-box">
             <div class="info-name">
               nickname:
             </div>
-            <div class="user-name">
+            <div class="user-name centering">
               <%= current_user.nickname %>
             </div>
           </div>
@@ -39,13 +39,13 @@
             <div class="info-name">
               email:
             </div>
-            <div class="user-email">
+            <div class="user-email centering">
               <%= current_user.email %>
             </div>
           </div>
         </div>
         <div class="sign-out-btn">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-sign-out-btn" %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn centering" %>
         </div>
       </div>
     </div>
