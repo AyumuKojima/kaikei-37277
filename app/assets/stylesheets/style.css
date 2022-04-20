@@ -9,7 +9,7 @@
 }
 
 .header {
-  background-color: aquamarine;
+  background-color: rgb(104, 246, 199);
   height: 7.5vh;
   width: 100vw;
   display: flex;
@@ -75,6 +75,22 @@
   margin-bottom: 5px;
 }
 
+.container {
+  display: flex;
+  height: calc(100vh - 7.5vh);
+  background-color: rgb(243, 255, 251);
+}
+
+.side-bar {
+  background-color: rgb(189, 243, 225);
+  height: 100%;
+  width: 6vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
 .side-btns {
   height: 50%;
   width: 100%;
@@ -92,9 +108,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  border: 3px solid black;
+  border: 3px solid rgb(8, 154, 8);
   border-radius: 10px;
-  background-color: rgb(194, 140, 245);
+  background-color: rgb(142, 231, 202);
   font-size: 0.4vw;
 }
 
@@ -111,22 +127,6 @@
 .size3 {
   width: 59%;
   height: 61%;
-}
-
-.container {
-  display: flex;
-  height: calc(100vh - 7.5vh)
-}
-
-
-.side-bar {
-  background-color: rgb(165, 105, 221);
-  height: 100%;
-  width: 6vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 50px;
 }
 
 .user-btns {
@@ -162,8 +162,8 @@
 }
 
 .user {
-  background-color: rgb(233, 215, 248);
-  border: 3px solid rgb(217, 187, 245);
+  background-color: rgb(165, 248, 242);
+  border: 3px solid rgb(0, 164, 150);
   border-radius: 10px;
   position: absolute;
   top: calc(100vh - 250px);
@@ -186,7 +186,7 @@
 }
 
 .info-name {
-  color: rgb(250, 106, 106);
+  color: rgb(240, 154, 16);
   font-weight: bold;
   font-size: 18px;
 }
@@ -211,10 +211,13 @@
   margin-top: 10px;
   height: 40px;
   width: 100%;
-  background-color: red;
-  border: 0px solid red;
+  background-color: rgb(236, 149, 149);
   border-radius: 10px;
   color: rgb(255, 236, 236);
+}
+
+.sign-out-btn:hover {
+  background-color: red;
 }
 
 .user-sign-out-btn {

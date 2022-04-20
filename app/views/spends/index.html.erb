@@ -23,8 +23,8 @@
         :id, 
         :title, 
         {}, 
-        {class: "spend-category-select"}) %>
-      <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
+        {class: "spend-category-select pointer"}) %>
+      <%= f.text_area :memo, placeholder: "メモを入力（任意）", class: "spend-memo-form", row: "10" %>
       <div class="submit-cover centering">
         <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
       </div>
