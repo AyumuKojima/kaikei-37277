@@ -73,7 +73,7 @@ function month () {
 
 function setCategoryName (categoryMark) {
   const categoryId = Number(categoryMark.innerHTML)-1;
-  const colorIds = document.querySelectorAll(".color-id");
+  const colorIds = document.querySelectorAll(".color-index");
   const colors = document.querySelectorAll(".color");
   const categoryNames = document.querySelectorAll(".category-name");
   const rgb = colors[colorIds[categoryId].innerHTML].innerHTML;

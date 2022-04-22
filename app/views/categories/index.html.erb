@@ -3,7 +3,7 @@
     <div class="category">
       <div class="category-box">
         <div class="category-box-header">
-          <div class="category-name centering">
+          <div class="category-title centering">
             <%= category.title %>
           </div>
           <div class="category-btns">
@@ -51,7 +51,7 @@
     <% end %>
   </div>
   <div id="color-list" style="display: none;">
-    <%= @colors.each do |color| %>
+    <% @colors.each do |color| %>
       <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
       <div class="thin-color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>, 0.22)</div>
     <% end %>

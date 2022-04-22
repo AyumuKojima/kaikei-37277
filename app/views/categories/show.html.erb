@@ -1,23 +1,24 @@
-<%= render partial: 'layouts/header' %>
-<div class="main">
-  <%= render partial: 'layouts/side-bar' %>
-  <div class="contain">
-    <div class="categories">
-      <div class="category-box">
-        <div class="category-box-header">
-          <div class="category-name">
-            <%= @category.title %>
+<div class="main-contents" style="padding-top: 2%;">
+  <div class="category">
+    <div class="category-box">
+      <div class="category-box-header">
+        <div class="category-title centering">
+          <%= @category.title %>
+        </div>
+        <div class="category-btns">
+          <div class="category-show category-btn">
+            <p class="btn centering" id="category-edit-btn">編集</p>
           </div>
-          <div class="category-btns">
-            <div class="category-show category-btn">
-              <p class="btn" id="category-edit-btn">編集</p>
-            </div>
+           <div class="category-delete category-btn">
+            <a class="btn centering" href="#">削除</a>
           </div>
         </div>
-        <div class="category-box-footer">
+      </div>
+      <div class="category-box-footer">
+        <div class="category-bar-border">
           <div class="category-bar" >
-            <span class="percentage" style="display: none;"><%= @each_props[@category.id-1] %></span>
-            <span class="color-id" style="display: none;"><%= @category.color_id %></span>
+            <span class="percentage hidden"><%= @each_props[@category.id-1] %></span>
+            <span class="color-id hidden"><%= @category.color_id %></span>
             <div class="category-money-sum">
               <%= @each_sums[@category.id-1] %>円
             </div>
@@ -29,61 +30,73 @@
           <p>100 (%)</p>
         </div>
       </div>
-      <div class="category-show-list">
-        <div class="category-show-day">
-          支出一覧
-        </div>
-        <% Date.new(@year, @month, 1).end_of_month.day.times do |i| %>
-          <% if @each_day_spends[i].length != 0 %>
-            <div class="show-box">
-              <% @each_day_spends[i].each do |spend| %>
-                <% if spend.category_id == @category.id %>
-                  <div class="show-info">
-                    <div class="show-date">
-                      <%= spend.day.to_s %>
-                    </div>
-                    <div class="category-mark">
-                      <%= spend.category_id %>
-                    </div>
-                    <div class="show-spend">
-                      <%= spend.money %>円
-                    </div>
-                    <div class="show-memo">
-                      <%= spend.memo %>
-                    </div>
-                    <div class="show-id" style="display: none;">
-                      <%= spend.id %>
-                    </div>
+    </div>
+  </div>
+  <div class="category-show-list">
+    <div class="show-list" style="height: 96%;">
+      <div class="show-day centering">
+        支出一覧
+      </div>
+      <% Date.new(@year, @month, 1).end_of_month.day.times do |i| %>
+        <% if @each_day_spends[i].length != 0 %>
+          <div class="show-box">
+            <% @each_day_spends[i].each do |spend| %>
+              <% if spend.category_id == @category.id %>
+                <div class="show-info pointer">
+                  <div class="show-date centering">
+                    <%= spend.day.to_s %>
                   </div>
-                <% end %>
+                  <div class="category-mark centering">
+                    <%= spend.category_id %>
+                  </div>
+                  <div class="show-spend centering">
+                    <%= spend.money %>円
+                  </div>
+                  <div class="show-memo">
+                    <%= spend.memo %>
+                  </div>
+                  <div class="show-id hidden">
+                    <%= spend.id %>
+                  </div>
+                </div>
               <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    
-    <div class="edit-category" id="new-category">
-      <div class="new-category-box-header">
-        <div class="new-category-name" id="new-category-name">
-          カテゴリーを編集
-        </div>
-      </div>
-      <%= form_with url: "/years/#{@year}/months/#{@month}/categories", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
-        <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
-        <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
-        <div class="category-input">
-          <div class="category-input-btn" id="category-input-btn">
-            <%= f.submit "カテゴリーを編集する", class: "category-post-submit-btn", id: "post-category-submit" %>
+            <% end %>
           </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="sub-contents">
+  <div class="new-category" id="new-category">
+    <div class="new-category-box-header centering">
+      <p class="new-category-name" id="new-category-name">
+        カテゴリーを編集
+      </p>
+    </div>
+    <%= form_with url: "/years/#{@year}/months/#{@month}/categories", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
+      <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
+      <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
+      <div class="category-input">
+        <div class="category-input-btn" id="category-input-btn">
+          <%= f.submit "カテゴリーを編集する", class: "category-post-submit-btn", id: "post-category-submit" %>
         </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="hidden">
+    <% @select_categories.each do |category| %>
+      <% if category.id != 0%>
+        <span class="color-index"><%= category.color_id %></span>
+        <span class="category-name"><%= category.title %></span>
       <% end %>
-    </div>
-    <div id="color-list" style="display: none;">
-      <%= @colors.each do |color| %>
-        <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
-        <div class="thin-color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>, 0.22)</div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
+  <div id="color-list" style="display: none;">
+    <% @colors.each do |color| %>
+      <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
+      <div class="thin-color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>, 0.22)</div>
+    <% end %>
   </div>
 </div>

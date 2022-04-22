@@ -16,7 +16,7 @@
   <% else %>
     <%= link_to '◀︎', year_month_categories_path(@year, @month - 1), class: "last-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/category") %>
+<% elsif current_page?("/years/#{@year}/months/#{@month}/categories/#{@category.id}") %>
   <% if @month == 1 %>
     <%= link_to '◀︎', year_month_category_path(@year - 1, 12), class: "last-month-btn" %>
   <% else %>
@@ -45,7 +45,7 @@
   <% else %>
     <%= link_to '▶︎', year_month_categories_path(@year, @month + 1), class: "next-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/category") %>
+<% elsif current_page?("/years/#{@year}/months/#{@month}/categories/#{@category.id}") %>
   <% if @month == 12 %>
     <%= link_to '▶︎', year_month_category_path(@year + 1, 1), class: "next-month-btn" %>
   <% else %>
