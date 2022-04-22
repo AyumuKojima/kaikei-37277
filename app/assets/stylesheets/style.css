@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .centering {
   display: flex;
   align-items: center;
