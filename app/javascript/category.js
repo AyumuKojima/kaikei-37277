@@ -6,7 +6,7 @@ function categoryColor () {
   const categoryBoxHeader = document.querySelectorAll(".category-box-header");
   const categoryShow = document.querySelectorAll(".category-show");
   const categoryDelete= document.querySelectorAll(".category-delete");
-  const categoryBoxFooter = document.querySelectorAll(".category-box-footer");
+  const categoryBoxFooter = document.querySelectorAll(".category-bar-border");
   const categoryBar = document.querySelectorAll(".category-bar");
   const props = document.querySelectorAll(".percentage");
   const categoryMoneySum = document.querySelectorAll(".category-money-sum");

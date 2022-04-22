@@ -1,35 +1,33 @@
-<%= render partial: "layouts/header" %>
-<div class="main">
-  <%= render partial: "layouts/side-bar" %>
-  <div class="contents">
-    <div class="calendar">
-      <%= render partial: "calendar" %>
-    </div>
-    <div class="spend-input">
-      <div class="spend-form-text">支出を入力</div>
-      <%= form_with url: "/years/#{params[:year_id]}/months/#{params[:month_id]}/spends", class: "spend-input-form", id: "form" do |f| %>
-        <div class="day-form">
-          <%= raw sprintf(
-                    f.date_select(
-                      :day,
-                      use_month_numbers: true,
-                      default: Date.today,
-                      start_year: (Date.today.year - 50),
-                      end_year: (Date.today.year + 10),
-                      date_separator: '%s'),
-                    "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
-        </div>
-        <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
-        <%= f.collection_select(
-          :category_id,
-          @select_categories,
-          :id, 
-          :title, 
-          {}, 
-          {class: "spend-category-select"}) %>
-        <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
-        <%= f.submit "支出を入力する", id: "submit" %>
-      <% end %>
-    </div>
+<div class="main-contents">
+  <%= render partial: "calendar" %>
+</div>
+<div class="sub-contents">
+  <div class="spend-input">
+    <%= form_with url: "/years/#{params[:year_id]}/months/#{params[:month_id]}/spends", class: "spend-input-form", id: "form" do |f| %>
+      <p class="spend-form-text centering">支出を入力</p>
+      <div class="day-form">
+        <%= raw sprintf(
+                  f.date_select(
+                    :day,
+                    use_month_numbers: true,
+                    default: Date.today,
+                    start_year: (Date.today.year - 50),
+                    end_year: (Date.today.year + 10),
+                    date_separator: '%s'),
+                  "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
+      </div>
+      <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
+      <%= f.collection_select(
+        :category_id,
+        @select_categories,
+        :id, 
+        :title, 
+        {}, 
+        {class: "spend-category-select pointer"}) %>
+      <%= f.text_area :memo, placeholder: "メモを入力（任意）", class: "spend-memo-form", row: "10" %>
+      <div class="submit-cover centering">
+        <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @each_day_spends = Spend.get_each_day_spends(@year, @month)
+    @select_categories = Category.add_for_index
   end
 
   private
