@@ -2,7 +2,7 @@
   <div class="category">
     <div class="category-box">
       <div class="category-box-header">
-        <div class="category-title centering">
+        <div class="category-title centering" id="category-title">
           <%= @category.title %>
         </div>
         <div class="category-btns">
@@ -85,7 +85,7 @@
     <% end %>
   </div>
 
-  <div class="spend-input">
+  <div class="spend-input" id="spend-form">
     <%= form_with url: "/years/#{@year}/months/#{@month}/spends", class: "spend-input-form", id: "form" do |f| %>
       <p class="spend-form-text centering">支出を編集</p>
       <%= f.text_field :index, class: "hidden" %>

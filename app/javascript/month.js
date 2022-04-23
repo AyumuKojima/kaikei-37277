@@ -95,6 +95,10 @@ function setCategoryName (categoryMark) {
 function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
+      if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
+        document.getElementById("spend-form").setAttribute("style", "display: block;");
+        document.getElementById("new-category").setAttribute("class", "new-category hidden");
+      };
       setBorder(showInfos, showInfos[i]);
       spendShowBtns.setAttribute("style", "display: block;");
       const date = new Date(showDates[i].innerHTML);
