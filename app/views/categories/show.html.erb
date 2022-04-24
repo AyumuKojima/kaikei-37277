@@ -73,7 +73,7 @@
       </div>
       <div class="category-destroy-btns">
         <%= link_to "カテゴリーを削除する", year_month_category_path(@year, @month, @category.id), method: "delete", class: "category-destroy-btn centering" %>
-        <a class="destroy-cancel-btn centering">キャンセル</a>
+        <%= link_to "キャンセル", year_month_category_path(@year, @month, @category.id), class: "destroy-cancel-btn centering" %>
       </div>
     </div>
   </div>
