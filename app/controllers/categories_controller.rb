@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:index, :create, :show]
+  before_action :set_category, only: [:index, :create, :show, :update]
 
   def index
     @category = Category.new
@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.update(category_params)
     @categories = Category.all
-    redirect_to year_month_category_path(params[:id])
+    redirect_to year_month_category_path(@year, @month, @category.id)
   end
 
   private
