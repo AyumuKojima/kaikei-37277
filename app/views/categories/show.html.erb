@@ -72,7 +72,7 @@
         <p class="destroy-message">削除したくない支出がある場合、支出を編集して別のカテゴリーに設定しましょう。</p>
       </div>
       <div class="category-destroy-btns">
-        <a class="category-destroy-btn centering">カテゴリーを削除する</a>
+        <%= link_to "カテゴリーを削除する", year_month_category_path(@year, @month, @category.id), method: "delete", class: "category-destroy-btn centering" %>
         <a class="destroy-cancel-btn centering">キャンセル</a>
       </div>
     </div>
