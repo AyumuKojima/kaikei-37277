@@ -20,6 +20,13 @@ class CategoriesController < ApplicationController
     @select_categories = Category.add_for_index
   end
 
+  def update
+    @category = Category.find(params[:id])
+    @category.update(category_params)
+    @categories = Category.all
+    redirect_to year_month_category_path(params[:id])
+  end
+
   private
 
   def category_params

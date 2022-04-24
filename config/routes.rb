@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :years, only: :index do
     resources :months, only: [:index, :show] do
       resources :spends, only: [:index, :create, :update, :destroy]
-      resources :categories, only: [:index, :create, :show]
+      resources :categories, only: [:index, :create, :show, :update]
     end
   end
 end
