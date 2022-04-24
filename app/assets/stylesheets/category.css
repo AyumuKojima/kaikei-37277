@@ -185,3 +185,59 @@
   justify-content: center;
   margin-top: 3%;
 }
+
+.destroy-message-box {
+  width: 80%;
+  margin-top: 2%;
+  font-size: 2.5vw;
+  font-weight: 400;
+  color: red;
+}
+
+.destroy-messages {
+  font-size: 1vw;
+  color: rgb(249, 113, 113);
+  margin-top: 3%;
+  padding-left: 4%;
+}
+
+.destroy-message {
+  margin-top: 2%;
+}
+
+.category-destroy-btns {
+  height: 30%;
+  width: 70%;
+  margin-left: 3%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.1vw;
+}
+
+.category-destroy-btn {
+  border: 0px solid;
+  border-radius: 10px;
+  height: 30%;
+  width: 35%;
+  background-color: rgb(250, 188, 188);
+  color: white;
+}
+
+.category-destroy-btn:hover {
+  background-color: red;
+}
+
+.destroy-cancel-btn {
+  border: 0px solid;
+  border-radius: 10px;
+  height: 30%;
+  width: 35%;
+  padding: 2px;
+  background-color: lightgrey;
+  color: white;
+}
+
+.destroy-cancel-btn:hover {
+  background-color: grey;
+}

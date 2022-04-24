@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  before_action :set_year_and_month
   before_action :set_category, only: [:index, :create, :show, :update]
 
   def index
@@ -27,18 +28,27 @@ class CategoriesController < ApplicationController
     redirect_to year_month_category_path(@year, @month, @category.id)
   end
 
+  def destroy
+    category = Category.find(params[:id])
+    category.destroy
+    redirect_to year_month_categories_path(@year, @month)
+  end
+
   private
 
   def category_params
     params.permit(:title, :color_id).merge(user_id: current_user.id)
   end
 
-  def set_category
+  def set_year_and_month
     @year = params[:year_id].to_i
     @month = params[:month_id].to_i
     if @year > Date.today.year + 10 || @year < Date.today.year - 50 || @month > 12 || @month < 1
       redirect_to year_month_spends_path(Date.today.year, Date.today.month)
     end
+  end
+
+  def set_category
     @categories = Category.all
     @colors = Color.all
     @sum = Spend.sum(@year, @month)
