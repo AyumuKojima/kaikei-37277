@@ -27,6 +27,9 @@ class CategoriesController < ApplicationController
     redirect_to year_month_category_path(@year, @month, @category.id)
   end
 
+  def destroy
+  end
+
   private
 
   def category_params
