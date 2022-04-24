@@ -2,7 +2,7 @@
   <div class="category">
     <div class="category-box">
       <div class="category-box-header">
-        <div class="category-title centering">
+        <div class="category-title centering" id="category-title">
           <%= @category.title %>
         </div>
         <div class="category-btns">
@@ -16,10 +16,10 @@
       </div>
       <div class="category-box-footer">
         <div class="category-bar-border">
-          <div class="category-bar" >
-            <span class="percentage hidden"><%= @each_props[@category.id-1] %></span>
-            <span class="color-id hidden"><%= @category.color_id %></span>
-            <div class="category-money-sum">
+          <div class="category-bar" id="category-bar" >
+            <span class="percentage hidden" id="category-prop"><%= @each_props[@category.id-1] %></span>
+            <span class="color-id hidden" id="color-id"><%= @category.color_id %></span>
+            <div class="category-money-sum" id="category-sum">
               <%= @each_sums[@category.id-1] %>円
             </div>
           </div>
@@ -68,19 +68,52 @@
   </div>
 </div>
 <div class="sub-contents">
-  <div class="new-category" id="new-category">
+  <div class="new-category hidden" id="new-category">
     <div class="new-category-box-header centering">
       <p class="new-category-name" id="new-category-name">
         カテゴリーを編集
       </p>
     </div>
-    <%= form_with url: "/years/#{@year}/months/#{@month}/categories", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
+    <%= form_with url: "/years/#{@year}/months/#{@month}/categories/#{params[:id]}", method: "PATCH", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
       <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
       <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
       <div class="category-input">
         <div class="category-input-btn" id="category-input-btn">
           <%= f.submit "カテゴリーを編集する", class: "category-post-submit-btn", id: "post-category-submit" %>
         </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="spend-input" id="spend-form">
+    <%= form_with url: "/years/#{@year}/months/#{@month}/spends", class: "spend-input-form", id: "form" do |f| %>
+      <p class="spend-form-text centering">支出を編集</p>
+      <%= f.text_field :index, class: "hidden" %>
+      <%= f.text_field :update_id, class: "hidden" %>
+      <%= f.text_field :past_category_id, class: "hidden", value: "#{params[:id]}"%>
+      <div class="day-form">
+        <%= raw sprintf(
+                  f.date_select(
+                    :day,
+                    use_month_numbers: true,
+                    default: Date.today,
+                    start_year: (Date.today.year - 50),
+                    end_year: (Date.today.year + 10),
+                    date_separator: '%s'),
+                  "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
+      </div>
+      <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
+      <%= f.collection_select(
+        :category_id,
+        @select_categories,
+        :id, 
+        :title, 
+        {}, 
+        {class: "spend-category-select"}) %>
+      <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
+      <div id="spend-show-btns" style="display: none;">
+        <%= f.submit "支出を編集する", id: "spend-update-submit" %>
+        <div id="spend-delete-btn" class="pointer">支出を削除する</div>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,5 @@
 class SpendsController < ApplicationController
-  before_action :set_spend, only: [:index, :create, :update]
+  before_action :set_spend, only: [:index, :create, :update, :destroy]
 
   def index
     @select_categories = Category.add_for_index
@@ -33,14 +33,21 @@ class SpendsController < ApplicationController
     spend.update(spend_params)
     sum = Spend.sum(@year, @month)
     index = params[:index].to_i
-    render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index }
+    past_category_id = params[:past_category_id].to_i
+    category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
+    prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
+    render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop }
   end
 
   def destroy
     spend = Spend.find(params[:id])
     spend.destroy
+    sum = Spend.sum(@year, @month)
     index = params[:index].to_i
-    render json: { index: index }
+    category_id = params[:id].to_i
+    category_sum = Spend.get_each_category_sums(@year, @month)[category_id-1]
+    prop = Spend.get_each_category_props(@year, @month)[category_id-1]
+    render json: { index: index, sum: sum, category_sum: category_sum, prop: prop }
   end
 
   private

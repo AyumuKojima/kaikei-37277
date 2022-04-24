@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:index, :create, :show]
+  before_action :set_category, only: [:index, :create, :show, :update]
 
   def index
     @category = Category.new
@@ -18,6 +18,13 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @each_day_spends = Spend.get_each_day_spends(@year, @month)
     @select_categories = Category.add_for_index
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    @category.update(category_params)
+    @categories = Category.all
+    redirect_to year_month_category_path(@year, @month, @category.id)
   end
 
   private

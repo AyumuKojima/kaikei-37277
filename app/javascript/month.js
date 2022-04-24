@@ -46,6 +46,12 @@ function month () {
         setSum(XHR.response.sum);
         updateSpendView(item, categoryMarks[index], showSpends[index], showMemos[index]);
         clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
+        if (document.getElementById("category-sum") != null){
+          if (XHR.response.past_category_id != item.category_id) {
+            showInfos[index].setAttribute("style", "display: none;");
+          };
+          setCategoryInfo(XHR);
+        };
       } else {
         location.reload();
       };
@@ -54,7 +60,7 @@ function month () {
 
   const spendDeleteBtn = document.getElementById("spend-delete-btn");
   spendDeleteBtn.addEventListener('click', () => {
-    adjustToken()
+    adjustToken();
     const form = document.getElementById("form");
     const formData = new FormData(form);
     XHR = setDeleteXHR(yearForm, monthForm, updateIdForm);
@@ -67,6 +73,10 @@ function month () {
       const index = XHR.response.index;
       showInfos[index].setAttribute("style", "display: none;");
       clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
+      setSum(XHR.response.sum);
+      if (document.getElementById("category-sum") != null){
+        setCategoryInfo(XHR);
+      };
     };
   });
 };
@@ -85,6 +95,10 @@ function setCategoryName (categoryMark) {
 function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
+      if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
+        document.getElementById("spend-form").setAttribute("style", "display: block;");
+        document.getElementById("new-category").setAttribute("class", "new-category hidden");
+      };
       setBorder(showInfos, showInfos[i]);
       spendShowBtns.setAttribute("style", "display: block;");
       const date = new Date(showDates[i].innerHTML);
@@ -130,7 +144,7 @@ function setDeleteXHR (year, month, deleteId) {
 
 function setSum (sum) {
   const monthSum = document.getElementById("month-sum");
-  monthSum.innerHTML = `合計出費額：${sum}円`;
+  monthSum.innerHTML = sum.toLocaleString();
 };
 
 function updateSpendView (item, categoryMark, showSpend, showMemo) {
@@ -151,6 +165,17 @@ function clearForm (moneyForm, categoryForm, memoForm, updateIdForm, indexForm, 
   monthForm.value = today.getMonth()+1;
   dayForm.value = today.getDate();
   btns.setAttribute('style', "display: none;");
+};
+
+function setCategoryInfo (XHR) {
+  const categorySum = document.getElementById("category-sum");
+  const categoryBar = document.getElementById("category-bar");
+  const thinColors = document.querySelectorAll(".thin-color");
+  const colorId = document.getElementById("color-id");
+  const id = colorId.innerHTML;
+  const rgba = thinColors[id].innerHTML;
+  categorySum.innerHTML = `${XHR.response.category_sum}円`
+  categoryBar.setAttribute("style", `background-color: rgba${rgba}; width: ${XHR.response.prop}%;`);
 };
 
 window.addEventListener('turbolinks:load', month);
