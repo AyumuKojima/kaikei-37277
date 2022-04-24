@@ -5,7 +5,7 @@
         <div class="category-title centering" id="category-title">
           <%= @category.title %>
         </div>
-        <div class="category-btns">
+        <div class="category-btns" id="category-btns">
           <div class="category-show category-btn">
             <p class="btn centering" id="category-edit-btn">編集</p>
           </div>
@@ -65,8 +65,16 @@
         <% end %>
       <% end %>
     </div>
-    <div class="destroy-message hidden" id="destroy-message">
-      category destroy messages
+    <div class="destroy-message-box hidden" id="destroy-message-box">
+      このカテゴリーを削除しますか？
+      <div class="destroy-messages">
+        <p class="destroy-message">カテゴリーを削除すると、このカテゴリーに紐付いたすべての支出情報が削除されます。</p>
+        <p class="destroy-message">削除したくない支出がある場合、支出を編集して別のカテゴリーに設定しましょう。</p>
+      </div>
+      <div class="category-destroy-btns">
+        <a class="category-destroy-btn centering">カテゴリーを削除する</a>
+        <a class="destroy-cancel-btn centering">キャンセル</a>
+      </div>
     </div>
   </div>
 </div>
