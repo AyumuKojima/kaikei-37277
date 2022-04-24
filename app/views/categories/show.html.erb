@@ -74,7 +74,7 @@
         カテゴリーを編集
       </p>
     </div>
-    <%= form_with url: "/years/#{@year}/months/#{@month}/category/#{params[:id]}", method: "PATCH", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
+    <%= form_with url: "/years/#{@year}/months/#{@month}/categories/#{params[:id]}", method: "PATCH", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
       <%= f.text_field :title, class: "category-name-form", id: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
       <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form", id: "category-color-form"}) %>
       <div class="category-input">
