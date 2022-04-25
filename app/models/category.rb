@@ -2,7 +2,7 @@ class Category < ApplicationRecord
   belongs_to :user
   has_many :spends
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 10 }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :color
