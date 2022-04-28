@@ -10,9 +10,13 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/header" %>
+    <% if user_signed_in? %>
+      <%= render partial: "layouts/header" %>
+    <% end %>
     <div class="container">
-      <%= render partial: "layouts/side-bar" %>
+      <% if user_signed_in? %>
+        <%= render partial: "layouts/side-bar" %>
+      <% end %>
       <div class="contents">
         <%= yield %>
       </div>
