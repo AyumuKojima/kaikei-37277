@@ -66,7 +66,7 @@ function setUpdateXHR () {
 };
 
 function setErrorMessages (errorMessages) {
-  err = document.getElementById("error-messages");
+  err = document.getElementById("category-error-messages");
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };

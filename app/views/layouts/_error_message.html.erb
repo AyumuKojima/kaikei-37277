@@ -1,6 +1,6 @@
 <% if model.errors.any? %>
   <div class="error-messages">
-    <ul>
+    <ul id="category-error-messages">
       <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

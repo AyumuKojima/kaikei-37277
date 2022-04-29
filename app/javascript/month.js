@@ -182,12 +182,10 @@ function setCategoryInfo (XHR) {
 };
 
 function setErrorMessages (errorMessages) {
-  err = document.getElementById("error-messages");
-  err.innerHTML = "<ul>";
+  err = document.getElementById("spend-error-messages");
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };
-  err.insertAdjacentHTML('beforeend', "</ul>");
 };
 
 window.addEventListener('turbolinks:load', month);
