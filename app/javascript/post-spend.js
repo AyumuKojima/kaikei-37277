@@ -71,7 +71,6 @@ function rewriteCalendar (XHR) {
 
 function setErrorMessages (errorMessages) {
   err = document.getElementById("error-messages");
-  errorMessages = XHR.response.error_messages;
   err.innerHTML = "<ul>";
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
