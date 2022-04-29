@@ -11,9 +11,12 @@ function postSpend () {
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
+      } else if (XHR.response.error) {
+        setErrorMessages(XHR.response.error_messages);
+      } else {
+        rewriteCalendar(XHR);
+        clearForm();
       };
-      clearForm();
-      rewriteCalendar(XHR);
     };
   });
 };
@@ -57,13 +60,23 @@ function rewriteCalendar (XHR) {
     const thisMonthSums = document.querySelectorAll(".this-month-sum");
     const monthSum = document.getElementById("month-sum");
     thisMonthSums[date.getDate()-1].innerHTML = `${XHR.response.day_sum}円`;
-    monthSum.innerHTML = `合計出費額：${XHR.response.sum}円`;
+    monthSum.innerHTML = XHR.response.sum.toLocaleString();
   } else if ((currentMonth==1 && date.getMonth()==11 && date.getFullYear()==currentYear-1) || (date.getFullYear()==currentYear && date.getMonth()+2 == currentMonth)) {
     const lastMonthSums = document.querySelectorAll(".last-month-sum");
     const wDayNum = document.getElementById("wday_num").innerHTML;
     const lastMonthDayNum = getLastDayNum(currentYear, currentMonth);
     lastMonthSums[date.getDate()-lastMonthDayNum+Number(wDayNum)-1].innerHTML = `${XHR.response.day_sum}円`;
   }
+};
+
+function setErrorMessages (errorMessages) {
+  err = document.getElementById("error-messages");
+  errorMessages = XHR.response.error_messages;
+  err.innerHTML = "<ul>";
+  for (let i=0; i<errorMessages.length; i++) {
+    err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
+  }
+  err.insertAdjacentHTML('beforeend', "</ul>")
 };
 
 window.addEventListener('turbolinks:load', postSpend);

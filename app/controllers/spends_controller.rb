@@ -21,10 +21,14 @@ class SpendsController < ApplicationController
   end
 
   def create
-    spend = Spend.create(spend_params)
-    day_sum = Spend.day_sum(spend)
-    sum = Spend.sum(@year, @month)
-    render json: { spend: spend, day_sum: day_sum, sum: sum }
+    @spend = Spend.new(spend_params)
+    if @spend.save
+      day_sum = Spend.day_sum(@spend)
+      sum = Spend.sum(@year, @month)
+      render json: { spend: @spend, day_sum: day_sum, sum: sum, error: false }
+    elsif
+      render json: { error_messages: @spend.errors.full_messages, error: true }
+    end
   end
 
   def update
