@@ -74,8 +74,8 @@ function setErrorMessages (errorMessages) {
   err.innerHTML = "<ul>";
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
-  }
-  err.insertAdjacentHTML('beforeend', "</ul>")
+  };
+  err.insertAdjacentHTML('beforeend', "</ul>");
 };
 
 window.addEventListener('turbolinks:load', postSpend);

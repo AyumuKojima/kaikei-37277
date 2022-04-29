@@ -33,14 +33,17 @@ class SpendsController < ApplicationController
 
   def update
     spend = Spend.find(params[:id])
-    old_spend_day = spend.day.day
-    spend.update(spend_params)
-    sum = Spend.sum(@year, @month)
-    index = params[:index].to_i
-    past_category_id = params[:past_category_id].to_i
-    category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
-    prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
-    render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop }
+    if spend.update(spend_params)
+      old_spend_day = spend.day.day
+      sum = Spend.sum(@year, @month)
+      index = params[:index].to_i
+      past_category_id = params[:past_category_id].to_i
+      category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
+      prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
+      render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop, error: false }
+    else
+      render json: { error_messages: spend.errors.full_messages, error: true }
+    end
   end
 
   def destroy
