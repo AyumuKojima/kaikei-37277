@@ -22,10 +22,12 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
-    @category.update(category_params)
-    @categories = Category.all
-    redirect_to year_month_category_path(@year, @month, @category.id)
+    category = Category.find(params[:id])
+    if category.update(category_params)
+      render json: { error: false }
+    else
+      render json: { error_messages: category.errors.full_messages, error: true }
+    end
   end
 
   def destroy
