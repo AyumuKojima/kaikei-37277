@@ -50,6 +50,7 @@
       </div>
     <% end %>
   </div>
+  <%= render partial: "layouts/error_message", locals: { model: @category } %>
   <div id="color-list" style="display: none;">
     <% @colors.each do |color| %>
       <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
