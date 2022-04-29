@@ -21,22 +21,29 @@ class SpendsController < ApplicationController
   end
 
   def create
-    spend = Spend.create(spend_params)
-    day_sum = Spend.day_sum(spend)
-    sum = Spend.sum(@year, @month)
-    render json: { spend: spend, day_sum: day_sum, sum: sum }
+    @spend = Spend.new(spend_params)
+    if @spend.save
+      day_sum = Spend.day_sum(@spend)
+      sum = Spend.sum(@year, @month)
+      render json: { spend: @spend, day_sum: day_sum, sum: sum, error: false }
+    elsif
+      render json: { error_messages: @spend.errors.full_messages, error: true }
+    end
   end
 
   def update
     spend = Spend.find(params[:id])
-    old_spend_day = spend.day.day
-    spend.update(spend_params)
-    sum = Spend.sum(@year, @month)
-    index = params[:index].to_i
-    past_category_id = params[:past_category_id].to_i
-    category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
-    prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
-    render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop }
+    if spend.update(spend_params)
+      old_spend_day = spend.day.day
+      sum = Spend.sum(@year, @month)
+      index = params[:index].to_i
+      past_category_id = params[:past_category_id].to_i
+      category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
+      prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
+      render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop, error: false }
+    else
+      render json: { error_messages: spend.errors.full_messages, error: true }
+    end
   end
 
   def destroy

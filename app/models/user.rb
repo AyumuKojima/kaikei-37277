@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   has_many :spends
   has_many :categories
+
+  validates :nickname, presence: true
 end

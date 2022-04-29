@@ -2,7 +2,7 @@ class Spend < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  validates :money, presence: true
+  validates :money, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 99999999 }
   validates :day, presence: true
 
   private

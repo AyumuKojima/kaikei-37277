@@ -36,24 +36,27 @@ function month () {
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
-      };
-      const oldSpendDay = XHR.response.old_spend_day;
-      const currentYear = document.getElementById("display-year").innerHTML;
-      const currentMonth = document.getElementById("display-month").innerHTML;
-      if (currentYear == yearForm.value && currentMonth == monthForm.value && oldSpendDay == dayForm.value) {
-        const item = XHR.response.spend;
-        const index = XHR.response.index;
-        setSum(XHR.response.sum);
-        updateSpendView(item, categoryMarks[index], showSpends[index], showMemos[index]);
-        clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
-        if (document.getElementById("category-sum") != null){
-          if (XHR.response.past_category_id != item.category_id) {
-            showInfos[index].setAttribute("style", "display: none;");
-          };
-          setCategoryInfo(XHR);
-        };
+      } else if (XHR.response.error) {
+        setErrorMessages(XHR.response.error_messages);
       } else {
-        location.reload();
+        const oldSpendDay = XHR.response.old_spend_day;
+        const currentYear = document.getElementById("display-year").innerHTML;
+        const currentMonth = document.getElementById("display-month").innerHTML;
+        if (currentYear == yearForm.value && currentMonth == monthForm.value && oldSpendDay == dayForm.value) {
+          const item = XHR.response.spend;
+          const index = XHR.response.index;
+          setSum(XHR.response.sum);
+          updateSpendView(item, categoryMarks[index], showSpends[index], showMemos[index]);
+          clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
+          if (document.getElementById("category-sum") != null){
+            if (XHR.response.past_category_id != item.category_id) {
+              showInfos[index].setAttribute("style", "display: none;");
+            };
+            setCategoryInfo(XHR);
+          };
+        } else {
+          location.reload();
+        };
       };
     };
   });
@@ -176,6 +179,13 @@ function setCategoryInfo (XHR) {
   const rgba = thinColors[id].innerHTML;
   categorySum.innerHTML = `${XHR.response.category_sum}円`
   categoryBar.setAttribute("style", `background-color: rgba${rgba}; width: ${XHR.response.prop}%;`);
+};
+
+function setErrorMessages (errorMessages) {
+  err = document.getElementById("spend-error-messages");
+  for (let i=0; i<errorMessages.length; i++) {
+    err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
+  };
 };
 
 window.addEventListener('turbolinks:load', month);
