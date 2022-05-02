@@ -1,6 +1,6 @@
 class Category < ApplicationRecord
   belongs_to :user
-  has_many :spends
+  has_many :spends, dependent: :destroy
 
   validates :title, presence: true, length: { maximum: 10 }
 
