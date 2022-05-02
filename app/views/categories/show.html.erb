@@ -117,7 +117,9 @@
                     date_separator: '%s'),
                   "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
       </div>
+      <%= f.label :money %>
       <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
+      <%= f.label :category_id %>
       <%= f.collection_select(
         :category_id,
         @select_categories,
@@ -125,6 +127,7 @@
         :title, 
         {}, 
         {class: "spend-category-select"}) %>
+      <%= f.label :memo %>
       <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
       <div id="spend-show-btns" style="display: none;">
         <%= f.submit "支出を編集する", id: "spend-update-submit" %>
