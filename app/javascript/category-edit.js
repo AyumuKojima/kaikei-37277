@@ -8,8 +8,8 @@ function editCategory () {
       editCategoryForm.setAttribute("class", "new-category");
       spendForm.setAttribute("style", "display: none;");
     };
-    const nameForm = document.getElementById("category-name-form");
-    const colorForm = document.getElementById("category-color-form");
+    const nameForm = document.getElementById("title");
+    const colorForm = document.getElementById("color_id");
     const categoryTitle = document.getElementById("category-title").innerHTML;
     const colorId = document.getElementById("color-id").innerHTML;
     const categoryInputBtn = document.getElementById("category-input-btn");
