@@ -1,11 +1,5 @@
 require 'rails_helper'
 
-def basic_pass(path)
-  username = ENV["BASIC_AUTH_USER"] 
-  password = ENV["BASIC_AUTH_PASSWORD"]
-  visit "http://#{username}:#{password}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}#{path}"
-end
-
 RSpec.describe "ユーザー新規登録", type: :system do
   before do
     @user = FactoryBot.build(:user)
@@ -16,7 +10,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
   context 'ユーザー新規登録できる' do
     it '正しい情報を入力すれば、新規登録できる' do
       # トップページに移動する
-      basic_pass root_path
+      basic_pass(root_path)
       # トップページにはサインアップ画面へ遷移するボタンが存在する
       expect(page).to have_content('Sign up')
       # サインアップ画面へ遷移する
@@ -40,7 +34,7 @@ RSpec.describe "ユーザー新規登録", type: :system do
   context 'ユーザー新規登録できない' do
     it '不適な情報を入力すれば、新規登録できずにトップページに戻ってくる' do
       # トップページへ遷移する
-      basic_pass root_path
+      basic_pass(root_path)
       # トップページにはサインアップ画面へ遷移するボタンが存在する
       expect(page).to have_content('Sign up')
       # サインアップ画面へ遷移する
@@ -71,7 +65,7 @@ RSpec.describe 'ユーザーログイン', type: :system do
   context 'ログインができる時' do
     it '正しい情報を入力すればログインできる' do
       # トップページに遷移する
-      basic_pass root_path
+      basic_pass(root_path)
       # フォームに情報を入力する
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
@@ -84,7 +78,7 @@ RSpec.describe 'ユーザーログイン', type: :system do
   context 'ログインできない時' do
     it '誤った情報を入力すればログインできない' do
       # トップページに遷移する
-      basic_pass root_path
+      basic_pass(root_path)
       # 未登録のユーザー情報を入力する
       another_user = FactoryBot.build(:user)
       fill_in 'Email', with: another_user.email
@@ -104,12 +98,9 @@ RSpec.describe 'ユーザーログアウト', type: :system do
   end
 
   it 'ログインしたユーザーはログアウトできる' do
-    # ログインするとカレンダー表示画面に遷移する
-    basic_pass root_path
-    fill_in 'Email', with: @user.email
-    fill_in 'Password', with: @user.password
-    find('input[name="commit"]').click
-    expect(current_path).to eq(year_month_spends_path(@year, @month))
+    # ログインする
+    basic_pass(root_path)
+    sign_in(@user)
     # サイドバーのユーザーボタンをクリックすると、ログアウトボタンが表示される
     find('img[id="user-btn"]').click
     expect(page).to have_content("ログアウト")
