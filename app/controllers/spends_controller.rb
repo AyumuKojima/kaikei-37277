@@ -32,7 +32,6 @@ class SpendsController < ApplicationController
   end
 
   def update
-    # binding.pry
     spend = Spend.find(params[:id])
     if spend.update(spend_params)
       old_spend_day = spend.day.day
