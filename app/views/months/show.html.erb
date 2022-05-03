@@ -12,7 +12,7 @@
                 <%= spend.day.to_s %>
               </div>
               <div class="category-mark centering">
-                <%= spend.category_id %>
+                <%= @select_categories.index(spend.category) %>
               </div>
               <div class="show-spend centering">
                 <%= spend.money %>円
@@ -69,10 +69,8 @@
 
   <div class="hidden">
     <% @select_categories.each do |category| %>
-      <% if category.id != 0%>
-        <span class="color-index"><%= category.color_id %></span>
-        <span class="category-name"><%= category.title %></span>
-      <% end %>
+      <span class="color-index"><%= category.color_id %></span>
+      <span class="category-name"><%= category.title %></span>
     <% end %>
     <div id="color-list">
       <% @colors.each do |color| %>

@@ -11,8 +11,8 @@ class Category < ApplicationRecord
 
   private
 
-  def self.add_for_index
+  def self.add_for_selector(user_id)
     fake_category = Category.new(id: 0, title: "カテゴリーを選択してください")
-    return [fake_category].push(Category.all).flatten!
+    return [fake_category].push(Category.where(user_id: user_id)).flatten!
   end
 end

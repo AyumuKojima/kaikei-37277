@@ -1,11 +1,7 @@
 function month () {
   const categoryMarks = document.querySelectorAll(".category-mark");
-  var categoryIds = [];
-  if (categoryIds.length == 0) {
-    for (let i=0; i < categoryMarks.length; i++) {
-      categoryIds.push(setCategoryName(categoryMarks[i]));
-    };
-  };
+  const submitBtn = document.getElementById("spend-update-submit");
+  const spendDeleteBtn = document.getElementById("spend-delete-btn");
   const showInfos = document.querySelectorAll(".show-info");
   const spendShowBtns = document.getElementById("spend-show-btns");
   const yearForm = document.getElementById("_day_1i");
@@ -20,16 +16,20 @@ function month () {
   const updateIdForm = document.getElementById("update_id");
   const indexForm = document.getElementById("index")
   const spendIds = document.querySelectorAll(".show-id");
-  fillInForm(categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm);
 
-  const submitBtn = document.getElementById("spend-update-submit");
+  for (let i=0; i < categoryMarks.length; i++) {
+    setCategoryName(categoryMarks[i]);
+  };
+
+  fillInForm(showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm);
+
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
     adjustToken();
-
     const form = document.getElementById("form");
     const formData = new FormData(form);
     XHR = setUpdateXHR(yearForm, monthForm, updateIdForm);
+    console.log(document.querySelector('input[name="authenticity_token"]').value)
     XHR.send(formData);
 
     XHR.onload = () => {
@@ -46,7 +46,7 @@ function month () {
           const item = XHR.response.spend;
           const index = XHR.response.index;
           setSum(XHR.response.sum);
-          updateSpendView(item, categoryMarks[index], showSpends[index], showMemos[index]);
+          updateSpendView(item, XHR.response.category_index, categoryMarks[index], showSpends[index], showMemos[index]);
           clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
           if (document.getElementById("category-sum") != null){
             if (XHR.response.past_category_id != item.category_id) {
@@ -61,7 +61,6 @@ function month () {
     };
   });
 
-  const spendDeleteBtn = document.getElementById("spend-delete-btn");
   spendDeleteBtn.addEventListener('click', () => {
     adjustToken();
     const form = document.getElementById("form");
@@ -85,17 +84,17 @@ function month () {
 };
 
 function setCategoryName (categoryMark) {
-  const categoryId = Number(categoryMark.innerHTML)-1;
+  const categoryIndex = Number(categoryMark.innerHTML);
   const colorIds = document.querySelectorAll(".color-index");
   const colors = document.querySelectorAll(".color");
-  const categoryNames = document.querySelectorAll(".category-name");
-  const rgb = colors[colorIds[categoryId].innerHTML].innerHTML;
+  const categoryTitles = document.querySelectorAll(".category-name");
+  const rgb = colors[colorIds[categoryIndex].innerHTML].innerHTML;
   categoryMark.setAttribute("style", `color: rgb${rgb};`);
-  categoryMark.innerHTML = categoryNames[categoryId].innerHTML;
-  return categoryId;
+  categoryMark.innerHTML = categoryTitles[categoryIndex].innerHTML;
 };
 
-function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
+function fillInForm (showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
+  const categoryIds = document.querySelectorAll(".select-category-id");
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
       if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
@@ -109,7 +108,7 @@ function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm,
       monthForm.value = date.getMonth()+1;
       dayForm.value = date.getDate();
       moneyForm.value = parseInt(showSpends[i].innerHTML, 10);
-      categoryForm.value = categoryIds[i]+1;
+      categoryForm.value = categoryIds[i].innerHTML;
       memoForm.value = showMemos[i].innerHTML.trim();
       updateIdForm.value = spendIds[i].innerHTML.trim();
       indexForm.value = i;
@@ -128,7 +127,10 @@ function setBorder (showInfos, showInfo) {
 };
 
 function adjustToken () {
-  document.querySelector('input[name="authenticity_token"]').value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  const TokenInputForms = document.querySelectorAll('input[name="authenticity_token"]');
+  for (let i=0; i < TokenInputForms.length; i++) {
+    TokenInputForms[i].value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  };
 };
 
 function setUpdateXHR (year, month, updateId) {
@@ -150,8 +152,8 @@ function setSum (sum) {
   monthSum.innerHTML = sum.toLocaleString();
 };
 
-function updateSpendView (item, categoryMark, showSpend, showMemo) {
-  categoryMark.innerHTML = item.category_id;
+function updateSpendView (item, category_index, categoryMark, showSpend, showMemo) {
+  categoryMark.innerHTML = category_index;
   setCategoryName(categoryMark);
   showSpend.innerHTML = `${item.money}円`;
   showMemo.innerHTML = item.memo;

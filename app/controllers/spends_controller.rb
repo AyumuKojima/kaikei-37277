@@ -1,46 +1,48 @@
 class SpendsController < ApplicationController
-  before_action :set_spend, only: [:index, :create, :update, :destroy]
+  before_action :set_year_and_month
 
   def index
-    @select_categories = Category.add_for_index
-    @spends = Spend.display(@year, @month)
-    @sum = Spend.sum(@year, @month)
-    @each_sums = Spend.each_sums(@year, @month)
+    @select_categories = Category.add_for_selector(current_user.id)
+    @spends = Spend.display(current_user.id, @year, @month)
+    @sum = Spend.sum(current_user.id, @year, @month)
+    @each_sums = Spend.each_day_sums(current_user.id, @year, @month)
     if @month == 1
-      @last_month_sums = Spend.each_sums(@year - 1, 12)
+      @last_month_sums = Spend.each_day_sums(current_user.id, @year - 1, 12)
     else
-      @last_month_sums = Spend.each_sums(@year, @month - 1)
+      @last_month_sums = Spend.each_day_sums(current_user.id, @year, @month - 1)
     end
 
     if @month == 12
-      @next_month_sums = Spend.each_sums(@year + 1, 1)
+      @next_month_sums = Spend.each_day_sums(current_user.id, @year + 1, 1)
     else
-      @next_month_sums = Spend.each_sums(@year, @month + 1)
+      @next_month_sums = Spend.each_day_sums(current_user.id, @year, @month + 1)
     end
     @spend = Spend.new
   end
 
   def create
-    @spend = Spend.new(spend_params)
-    if @spend.save
-      day_sum = Spend.day_sum(@spend)
-      sum = Spend.sum(@year, @month)
-      render json: { spend: @spend, day_sum: day_sum, sum: sum, error: false }
+    spend = Spend.new(spend_params)
+    if spend.save
+      day_sum = Spend.day_sum(current_user.id, spend)
+      sum = Spend.sum(current_user.id, @year, @month)
+      render json: { spend: spend, day_sum: day_sum, sum: sum, error: false }
     elsif
-      render json: { error_messages: @spend.errors.full_messages, error: true }
+      render json: { error_messages: spend.errors.full_messages, error: true }
     end
   end
 
   def update
+    # binding.pry
     spend = Spend.find(params[:id])
     if spend.update(spend_params)
       old_spend_day = spend.day.day
-      sum = Spend.sum(@year, @month)
+      sum = Spend.sum(current_user.id, @year, @month)
       index = params[:index].to_i
       past_category_id = params[:past_category_id].to_i
-      category_sum = Spend.get_each_category_sums(@year, @month)[past_category_id-1]
-      prop = Spend.get_each_category_props(@year, @month)[past_category_id-1]
-      render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop, error: false }
+      category_sum = Spend.sum(current_user.id, @year, @month, past_category_id)
+      prop = (category_sum * 100 / sum).floor
+      category_index = Category.add_for_selector(current_user.id).index(spend.category)
+      render json: { spend: spend, sum: sum, old_spend_day: old_spend_day, index: index, past_category_id: past_category_id, category_sum: category_sum, prop: prop, category_index: category_index, error: false }
     else
       render json: { error_messages: spend.errors.full_messages, error: true }
     end
@@ -48,12 +50,16 @@ class SpendsController < ApplicationController
 
   def destroy
     spend = Spend.find(params[:id])
+    category_id = spend.category_id
     spend.destroy
-    sum = Spend.sum(@year, @month)
+    sum = Spend.sum(current_user.id, @year, @month)
     index = params[:index].to_i
-    category_id = params[:id].to_i
-    category_sum = Spend.get_each_category_sums(@year, @month)[category_id-1]
-    prop = Spend.get_each_category_props(@year, @month)[category_id-1]
+    category_sum = Spend.sum(current_user.id, @year, @month, category_id)
+    if sum != 0
+      prop = (category_sum * 100 / sum).floor
+    else
+      prop = 0
+    end
     render json: { index: index, sum: sum, category_sum: category_sum, prop: prop }
   end
 
@@ -63,7 +69,7 @@ class SpendsController < ApplicationController
     params.permit(:money, :memo, :category_id, :day).merge(user_id: current_user.id)
   end
 
-  def set_spend
+  def set_year_and_month
     @year = params[:year_id].to_i
     @month = params[:month_id].to_i
     if @year > Date.today.year + 10 || @year < Date.today.year - 50 || @month > 12 || @month < 1
