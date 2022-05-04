@@ -37,14 +37,27 @@
 </div>
 <div class="sub-contents">
   <div class="new-category" id="new-category">
-    <div class="new-category-box-header centering">
+    <div class="new-category-box-header">
       <p class="new-category-name" id="new-category-name">新規カテゴリー</p>
     </div>
+    <%= render partial: "layouts/error_message", locals: { model: @category } %>
     <%= form_with url: "/years/#{@year}/months/#{@month}/categories", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）" %>
-      <%= f.label :color_id %>
-      <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form"}) %>
+      <div class="category-fields">
+        <div class="title-field">
+          <div class="label-field">
+            <%= f.label :title, class: "label" %>
+            <p class="must-mark centering">必須</p>
+          </div>
+          <%= f.text_field :title, class: "category-name-form", placeholder: "カテゴリ名を入力（10文字以内）", value: @category.title %>
+        </div>
+        <div class="color-field">
+          <div class="label-field">
+            <%= f.label :color_id, class: "label" %>
+            <p class="must-mark centering">必須</p>
+          </div>
+          <%= f.collection_select(:color_id, Color.all, :id, :name, {}, {class: "category-color-form"}) %>
+        </div>
+      </div>
       <div class="category-input">
         <div class="category-input-btn" id="category-input-btn">
           <%= f.submit "カテゴリーを追加する", class: "category-post-submit-btn", id: "post-category-submit" %>
@@ -52,7 +65,6 @@
       </div>
     <% end %>
   </div>
-  <%= render partial: "layouts/error_message", locals: { model: @category } %>
   <div id="color-list" style="display: none;">
     <% @colors.each do |color| %>
       <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>

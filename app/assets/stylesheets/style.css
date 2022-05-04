@@ -21,6 +21,37 @@ body {
   display: none;
 }
 
+.label-field {
+  margin: 3px 5px;
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.label {
+  font-size: 1.2vw;
+  font-weight: bold;
+  height: 100%;
+}
+
+.must-mark {
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+  border-radius: 5px;
+  height: 100%;
+  width: 30%;
+  margin-left: 10px;
+  font-size: 0.5vw;
+}
+
+.error-messages {
+  color: red;
+  font-size: 1vw;
+  text-align: center;
+}
+
 .header {
   background-color: rgb(104, 246, 199);
   height: 7.5vh;
