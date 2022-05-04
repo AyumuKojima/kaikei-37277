@@ -33,8 +33,8 @@ class SpendsController < ApplicationController
 
   def update
     spend = Spend.find(params[:id])
+    old_spend_day = spend.day.day
     if spend.update(spend_params)
-      old_spend_day = spend.day.day
       sum = Spend.sum(current_user.id, @year, @month)
       index = params[:index].to_i
       past_category_id = params[:past_category_id].to_i
