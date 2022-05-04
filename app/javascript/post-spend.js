@@ -1,6 +1,7 @@
 function postSpend () {
   const submitBtn = document.getElementById("submit");
   submitBtn.addEventListener('click', (e) => {
+    window.pendingRequestCount = 1;
     e.preventDefault();
     document.querySelector('input[name="authenticity_token"]').value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     const form = document.getElementById("form");
@@ -8,6 +9,7 @@ function postSpend () {
     XHR = setXHRandFormData();
     XHR.send(formData);
     XHR.onload = () => {
+      window.pendingRequestCount = 0;
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;

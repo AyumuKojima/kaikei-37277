@@ -25,15 +25,16 @@ function month () {
   fillInForm(categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm);
 
   submitBtn.addEventListener('click', (e) => {
+    window.pendingRequestCount = 1;
     e.preventDefault();
     adjustToken();
     const form = document.getElementById("form");
     const formData = new FormData(form);
     XHR = setUpdateXHR(yearForm, monthForm, updateIdForm);
-    console.log(document.querySelector('input[name="authenticity_token"]').value)
     XHR.send(formData);
 
     XHR.onload = () => {
+      window.pendingRequestCount = 0;
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
@@ -63,12 +64,14 @@ function month () {
   });
 
   spendDeleteBtn.addEventListener('click', () => {
+    window.pendingRequestCount = 1;
     adjustToken();
     const form = document.getElementById("form");
     const formData = new FormData(form);
     XHR = setDeleteXHR(yearForm, monthForm, updateIdForm);
     XHR.send(formData);
     XHR.onload = () => {
+      window.pendingRequestCount = 0;
       if (XHR.status != 200) {
         alert(`Error ${XHR.status}: ${XHR.statusText}`);
         return null;
