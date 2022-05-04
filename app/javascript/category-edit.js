@@ -1,11 +1,12 @@
 function editCategory () {
   const editBtn = document.getElementById("category-edit-btn");
   editBtn.addEventListener("click", () => {
+    const editCategoryContents = document.getElementById("edit-category-contents")
     const editCategoryForm = document.getElementById("new-category");
     const spendForm = document.getElementById("spend-form");
     const colors = document.querySelectorAll(".color");
-    if (editCategoryForm.getAttribute("class") == "new-category hidden") {
-      editCategoryForm.setAttribute("class", "new-category");
+    if (editCategoryContents.getAttribute("style") == "display: none;") {
+      editCategoryContents.removeAttribute("style");
       spendForm.setAttribute("style", "display: none;");
     };
     const nameForm = document.getElementById("title");

@@ -272,3 +272,8 @@
 .destroy-cancel-btn:hover {
   background-color: grey;
 }
+
+.edit-category-contents {
+  width: 100%;
+  height: 100%;
+}

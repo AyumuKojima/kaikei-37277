@@ -102,7 +102,7 @@ function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm,
     showInfos[i].addEventListener("click", () => {
       if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
         document.getElementById("spend-form").setAttribute("style", "display: block;");
-        document.getElementById("new-category").setAttribute("class", "new-category hidden");
+        document.getElementById("edit-category-contents").setAttribute("style", "display: none;");
       };
       setBorder(showInfos, showInfos[i]);
       spendShowBtns.setAttribute("style", "display: block;");
