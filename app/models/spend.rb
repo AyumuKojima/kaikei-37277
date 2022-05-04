@@ -8,7 +8,7 @@ class Spend < ApplicationRecord
 
   private
 
-  def self.display(year, month)
+  def self.display(user_id, year, month, category_id=nil)
     if month == 12
       next_year = year + 1
       next_month = 1
@@ -24,12 +24,15 @@ class Spend < ApplicationRecord
     if next_month < 10
       next_month = "0#{next_month}"
     end 
-
-    sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-#{month}-01') AND day < DATE('#{next_year}-#{next_month}-01');"
+    if category_id == nil
+      sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-#{month}-01') AND day < DATE('#{next_year}-#{next_month}-01') AND user_id = #{user_id};"
+    else
+      sql = "SELECT * FROM spends WHERE day >= DATE('#{year}-#{month}-01') AND day < DATE('#{next_year}-#{next_month}-01') AND user_id = #{user_id} AND category_id = #{category_id};"
+    end
     return Spend.find_by_sql(sql)
   end
 
-  def self.get_each_day_spends(year, month)
+  def self.get_each_day_spends(user_id, year, month, category_id=nil)
     if month < 10
       month_ = "0#{month}"
     else
@@ -43,16 +46,19 @@ class Spend < ApplicationRecord
       else
         day = i+1
       end
-
-      sql = "SELECT * FROM spends WHERE day = DATE('#{year}-#{month_}-#{day}')"
+      if category_id == nil
+        sql = "SELECT * FROM spends WHERE day = DATE('#{year}-#{month_}-#{day}') AND user_id = #{user_id};"
+      else
+        sql = "SELECT * FROM spends WHERE day = DATE('#{year}-#{month_}-#{day}') AND user_id = #{user_id} AND category_id = #{category_id};"
+      end
       spends = Spend.find_by_sql(sql)
       each_day_spends << spends
     end
     return each_day_spends
   end
 
-  def self.sum(year, month)
-    spends = Spend.display(year, month)
+  def self.sum(user_id, year, month, category_id=nil)
+    spends = Spend.display(user_id, year, month, category_id)
     sum = 0
     spends.each do |spend|
       sum += spend.money
@@ -60,8 +66,8 @@ class Spend < ApplicationRecord
     return sum
   end
 
-  def self.each_sums(year, month)
-    spends = Spend.display(year, month)
+  def self.each_day_sums(user_id, year, month)
+    spends = Spend.display(user_id, year, month)
     each_sums = []
     Date.new(year, month, 1).end_of_month.day.times do |i|
       each_sum = 0
@@ -75,8 +81,8 @@ class Spend < ApplicationRecord
     return each_sums
   end
 
-  def self.day_sum(spend)
-    sql = "SELECT * FROM spends WHERE day = '#{spend.day.to_s}'"
+  def self.day_sum(user_id, spend)
+    sql = "SELECT * FROM spends WHERE day = '#{spend.day.to_s}' AND user_id = #{user_id}"
     spends = Spend.find_by_sql(sql)
     sum = 0
     spends.each do |s|
@@ -85,28 +91,29 @@ class Spend < ApplicationRecord
     return sum
   end
 
-  def self.get_each_category_sums(year, month)
+  def self.get_each_category_sums(user_id, year, month)
     each_category_sums = []
-    Category.all.each do
-      each_category_sums << 0
-    end
-    spends = Spend.display(year, month)
-    spends.each do |spend|
-      each_category_sums[spend.category_id-1] += spend.money
+    User.find(user_id).categories.each do |category|
+      category_sum = 0
+      Spend.display(user_id, year, month, category.id).each do |spend|
+        category_sum += spend.money
+      end
+      each_category_sums << category_sum
     end
     return each_category_sums
   end
 
-  def self.get_each_category_props(year, month)
-    each_category_sums = Spend.get_each_category_sums(year, month)
+  def self.get_each_category_props(user_id, year, month)
+    each_category_sums = Spend.get_each_category_sums(user_id, year, month)
+    sum = Spend.sum(user_id, year, month)
     each_category_props = []
-    Category.all.each do
-      each_category_props << 0
-    end
-    sum = Spend.sum(year, month)
     if sum != 0
-      each_category_props.length.times do |i|
-        each_category_props[i] = (each_category_sums[i] * 100 / sum).floor
+      each_category_sums.each do |category_sum|
+        each_category_props << (category_sum * 100 / sum).floor
+      end
+    else
+      each_category_sums.each do
+        each_category_props << 0
       end
     end
     return each_category_props

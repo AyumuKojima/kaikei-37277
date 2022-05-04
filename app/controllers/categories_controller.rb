@@ -17,8 +17,9 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @each_day_spends = Spend.get_each_day_spends(@year, @month)
-    @select_categories = Category.add_for_index
+    @each_day_spends = Spend.get_each_day_spends(current_user.id, @year, @month, params[:id].to_i)
+    @select_categories = Category.add_for_selector(current_user.id)
+    @index = @select_categories.index(@category)
   end
 
   def update
@@ -51,10 +52,10 @@ class CategoriesController < ApplicationController
   end
 
   def set_category
-    @categories = Category.all
+    @categories = Category.where(user_id: current_user.id)
     @colors = Color.all
-    @sum = Spend.sum(@year, @month)
-    @each_sums = Spend.get_each_category_sums(@year, @month)
-    @each_props = Spend.get_each_category_props(@year, @month)
+    @sum = Spend.sum(current_user.id, @year, @month)
+    @each_sums = Spend.get_each_category_sums(current_user.id, @year, @month)
+    @each_props = Spend.get_each_category_props(current_user.id, @year, @month)
   end
 end
