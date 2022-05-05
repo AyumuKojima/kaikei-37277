@@ -1,38 +1,5 @@
 <div class="main-contents" style="padding-top: 2%;">
-  <div class="category">
-    <div class="category-box">
-      <div class="category-box-header">
-        <p id="current-category-id" class="hidden"><%= @category.id %></p>
-        <div class="category-title centering" id="category-title">
-          <%= @category.title %>
-        </div>
-        <div class="category-btns" id="category-btns">
-          <div class="category-show category-btn">
-            <p class="btn centering" id="category-edit-btn">編集</p>
-          </div>
-          <div class="category-delete category-btn">
-            <a class="btn centering pointer" id="category-delete-btn">削除</a>
-          </div>
-        </div>
-      </div>
-      <div class="category-box-footer">
-        <div class="category-bar-border">
-          <div class="category-bar" id="category-bar" >
-            <span class="percentage hidden" id="category-prop"><%= @each_props[@index-1] %></span>
-            <span class="color-id hidden" id="color-id"><%= @category.color_id %></span>
-            <div class="category-money-sum" id="category-sum">
-              <%= @each_sums[@index-1] %>円
-            </div>
-          </div>
-        </div>
-        <div class="percentage-values">
-          <p>0</p>
-          <p>50</p>
-          <p>100 (%)</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "category-info", locals: { category_index: false, category: @category, index: @index-1 } %>
   <div class="category-show-list">
     <%= render partial: "spends/show-list", locals: { month_show: false } %>
     <%= render partial: "destroy-messages" %>

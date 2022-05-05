@@ -53,7 +53,7 @@ function month () {
           setSum(XHR.response.sum);
           updateSpendView(item, XHR.response.category_index, categoryMarks[index], showSpends[index], showMemos[index], categoryIds[index]);
           clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
-          if (document.getElementById("category-sum") != null){
+          if (document.querySelector(".category-money-sum") != null){
             if (XHR.response.past_category_id != item.category_id) {
               showInfos[index].setAttribute("style", "display: none;");
             };
@@ -83,7 +83,7 @@ function month () {
       showInfos[index].setAttribute("style", "display: none;");
       clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
       setSum(XHR.response.sum);
-      if (document.getElementById("category-sum") != null){
+      if (document.querySelector(".category-money-sum") != null){
         setCategoryInfo(XHR);
       };
     };
@@ -180,11 +180,10 @@ function clearForm (moneyForm, categoryForm, memoForm, updateIdForm, indexForm, 
 };
 
 function setCategoryInfo (XHR) {
-  const categorySum = document.getElementById("category-sum");
-  const categoryBar = document.getElementById("category-bar");
+  const categorySum = document.querySelector(".category-money-sum");
+  const categoryBar = document.querySelector(".category-bar");
   const thinColors = document.querySelectorAll(".thin-color");
-  const colorId = document.getElementById("color-id");
-  const id = colorId.innerHTML;
+  const id = document.querySelector(".color-id").innerHTML;
   const rgba = thinColors[id].innerHTML;
   categorySum.innerHTML = `${XHR.response.category_sum}円`
   categoryBar.setAttribute("style", `background-color: rgba${rgba}; width: ${XHR.response.prop}%;`);

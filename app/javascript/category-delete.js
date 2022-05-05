@@ -4,7 +4,7 @@ function categoryDelete () {
     const showList = document.getElementById("show-list");
     const destroyMessageBox = document.getElementById("destroy-message-box");
     const subContents = document.getElementById("sub-contents");
-    const categoryBtns = document.getElementById("category-btns");
+    const categoryBtns = document.querySelector(".category-btns");
 
     showList.setAttribute('class', "show-list hidden");
     destroyMessageBox.setAttribute('class', "destroy-message-box");

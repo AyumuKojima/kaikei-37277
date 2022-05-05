@@ -11,8 +11,8 @@ function editCategory () {
     };
     const nameForm = document.getElementById("title");
     const colorForm = document.getElementById("color_id");
-    const categoryTitle = document.getElementById("category-title").innerHTML;
-    const colorId = document.getElementById("color-id").innerHTML;
+    const categoryTitle = document.querySelector(".category-title").innerHTML;
+    const colorId = document.querySelector(".color-id").innerHTML;
     const categoryInputBtn = document.getElementById("category-input-btn");
     const newCategoryName = document.getElementById("new-category-name");
 
