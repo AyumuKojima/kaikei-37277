@@ -102,24 +102,26 @@
   color: rgb(138, 26, 194);
 }
 
-.spend-form-text {
-  width: 80%;
-  height: 8%;
-  margin: 20% 3% 0;
-  font-size: 1.7vw;
-  color: rgb(0, 164, 150);
-}
-
 .spend-input-form {
   border: 3px solid rgb(0, 164, 150);
   border-radius: 10px;
   padding: 10px;
   width: 80%;
-  height: 65%;
-  margin: 0 3%;
+  height: 75%;
+  margin: 25% 3% 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.spend-form-text {
+  width: 100%;
+  height: 10%;
+  font-size: 1.7vw;
+  color: rgb(0, 164, 150);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .spend-fields {
@@ -286,6 +288,7 @@
   border-radius: 5px;
   height: 38%;
   width: 70%;
+  margin-top: 8px;
   background-color: rgb(190, 242, 238);
 }
 

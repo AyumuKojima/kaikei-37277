@@ -1,5 +1,5 @@
-<p class="spend-form-text centering"><%= form_text %></p>
 <%= form_with class: "spend-input-form", id: "form" do |f| %>
+  <p class="spend-form-text"><%= form_text %></p>
   <% if edit_spend %>
     <%= f.text_field :index, class: "hidden" %>
     <%= f.text_field :update_id, class: "hidden" %>
