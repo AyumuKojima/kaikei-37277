@@ -45,6 +45,9 @@ function month () {
         const currentYear = document.getElementById("display-year").innerHTML;
         const currentMonth = document.getElementById("display-month").innerHTML;
         if (currentYear == yearForm.value && currentMonth == monthForm.value && oldSpendDay == dayForm.value) {
+          if (document.getElementById("spend-error-form").getAttribute("style") == "display: block;"){
+            document.getElementById("spend-error-form").setAttribute("style", "display: none;");
+          };
           const item = XHR.response.spend;
           const index = XHR.response.index;
           setSum(XHR.response.sum);
@@ -188,7 +191,12 @@ function setCategoryInfo (XHR) {
 };
 
 function setErrorMessages (errorMessages) {
+  errorForm = document.getElementById("spend-error-form");
+  if (errorForm.getAttribute("style") == "display: none;") {
+    errorForm.setAttribute("style", "display: block;");
+  };
   err = document.getElementById("spend-error-messages");
+  err.innerHTML = ""
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };

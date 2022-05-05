@@ -67,7 +67,12 @@ function setUpdateXHR () {
 };
 
 function setErrorMessages (errorMessages) {
+  errorForm = document.getElementById("category-error-form");
+  if (errorForm.getAttribute("style") == "display: none;") {
+    errorForm.setAttribute("style", "display: block;");
+  };
   err = document.getElementById("category-error-messages");
+  err.innerHTML = "";
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };
