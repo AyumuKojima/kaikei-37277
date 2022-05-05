@@ -1,0 +1,126 @@
+.log-in-main {
+  height: 100%;
+  width: 100%;
+  margin-left: 6vw;
+}
+
+.log-in-contents {
+  height: 70%;
+  width: 60%;
+  display: flex;
+  background-color: lightyellow;
+}
+
+.log-in-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-right: 2px solid lightgrey;
+}
+
+.log-in-logo {
+  font-size: 5vw;
+  font-family: "Times New Roman";
+  padding: 15px;
+  color: rgb(86, 204, 194);
+  border-bottom: 3px solid rgb(70, 189, 179);
+  margin-top: 10%;
+}
+
+.log-in-btns {
+  height: 50%;
+  width: 100%;
+  padding-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 15%;
+}
+
+.sign-up-btn {
+  height: 25%;
+  width: 55%;
+  border-radius: 5px;
+  text-align: center;
+  background-color: rgb(137, 212, 206);
+  color: white;
+}
+
+.sign-up-btn:hover {
+  background-color: rgb(3, 166, 152);
+}
+
+.forget-password {
+  color: rgb(205, 105, 68);
+}
+
+.log-in-right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.new_user {
+  height: 90%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.log-in-fields {
+  height: 40%;
+  width: 100%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.field {
+  width: 100%;
+}
+
+.email-field {
+  border: 1.5px solid black;
+  border-radius: 5px;
+  height: 53%;
+  width: 90%;
+  font-size: 1.2vw;
+  padding: 4px 6px;
+  margin-top: 3px;
+}
+
+.password-field {
+  border: 1.5px solid black;
+  border-radius: 5px;
+  height: 53%;
+  width: 90%;
+  font-size: 1.2vw;
+  margin-top: 3px;
+  padding: 4px 6px;
+}
+
+.actions {
+  height: 10%;
+  width: 50%;
+  margin: 25% 0 10%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(160, 193, 128);
+}
+
+.actions:hover {
+  background-color: rgb(94, 175, 13);
+}
+
+.log-in-submit {
+  height: 100%;
+  width: 100%;
+}
