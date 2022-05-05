@@ -1,35 +1,5 @@
 <div class="main-contents centering">
-  <div class="show-list">
-    <div class="show-day centering">
-      支出一覧
-    </div>
-    <% Date.new(@year, @month, 1).end_of_month.day.times do |i| %>
-      <% if @each_day_spends[i].length != 0 %>
-        <div class="show-box">
-          <% @each_day_spends[i].each do |spend| %>
-            <div class="show-info pointer">
-              <span class="hidden select-category-id"><%= spend.category_id %></span>
-              <div class="show-date centering">
-                <%= spend.day.to_s %>
-              </div>
-              <div class="category-mark centering">
-                <%= @select_categories.index(spend.category) %>
-              </div>
-              <div class="show-spend centering">
-                <%= spend.money %>円
-              </div>
-              <div class="show-memo">
-                <%= spend.memo %>
-              </div>
-              <div class="show-id hidden">
-                <%= spend.id %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <%= render partial: "spends/show-list", locals: { month_show: true } %>
 </div>
 <div class="sub-contents">
   <%= render partial: "spends/spend-form", locals: { edit_spend: true, form_text: "支出を編集" } %>
