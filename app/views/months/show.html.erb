@@ -3,17 +3,17 @@
 </div>
 <div class="sub-contents">
   <%= render partial: "spends/spend-form", locals: { edit_spend: true, form_text: "支出を編集" } %>
+</div>
 
-  <div class="hidden">
-    <% @select_categories.each do |category| %>
-      <span class="color-index"><%= category.color_id %></span>
-      <span class="category-name"><%= category.title %></span>
+<div class="hidden">
+  <% @select_categories.each do |category| %>
+    <span class="color-index"><%= category.color_id %></span>
+    <span class="category-name"><%= category.title %></span>
+  <% end %>
+  <div id="color-list">
+    <% @colors.each do |color| %>
+      <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
     <% end %>
-    <div id="color-list">
-      <% @colors.each do |color| %>
-        <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
-      <% end %>
-    </div>
   </div>
 </div>
 
