@@ -254,3 +254,7 @@ body {
 .sub-contents {
   width: 25%;
 }
+
+.hidden-contents {
+  display: none;
+}

@@ -6,10 +6,11 @@
 <div class="sub-contents">
   <%= render partial: "category-form", locals: { form_text: "新規カテゴリー", submit_text: "カテゴリーを追加する", edit_category: false } %>
 </div>
-
-<div id="color-list" style="display: none;">
-  <% @colors.each do |color| %>
-    <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
-    <div class="thin-color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>, 0.22)</div>
-  <% end %>
+<div class="hidden-contents">
+  <div id="color-list">
+    <% @colors.each do |color| %>
+      <div class="color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>)</div>
+      <div class="thin-color">(<%= color.rgb[0] %>, <%= color.rgb[1] %>, <%= color.rgb[2] %>, 0.22)</div>
+    <% end %>
+  </div>
 </div>
