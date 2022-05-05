@@ -12,7 +12,7 @@ class Category < ApplicationRecord
   private
 
   def self.add_for_selector(user_id)
-    fake_category = Category.new(id: 0, title: "カテゴリーを選択してください")
+    fake_category = Category.new(id: 0, title: "カテゴリーを選択")
     return [fake_category].push(Category.where(user_id: user_id)).flatten!
   end
 end

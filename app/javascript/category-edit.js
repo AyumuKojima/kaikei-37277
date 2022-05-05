@@ -1,17 +1,18 @@
 function editCategory () {
   const editBtn = document.getElementById("category-edit-btn");
   editBtn.addEventListener("click", () => {
+    const editCategoryContents = document.getElementById("edit-category-contents")
     const editCategoryForm = document.getElementById("new-category");
-    const spendForm = document.getElementById("spend-form");
+    const spendForm = document.getElementById("form");
     const colors = document.querySelectorAll(".color");
-    if (editCategoryForm.getAttribute("class") == "new-category hidden") {
-      editCategoryForm.setAttribute("class", "new-category");
+    if (editCategoryContents.getAttribute("style") == "display: none;") {
+      editCategoryContents.removeAttribute("style");
       spendForm.setAttribute("style", "display: none;");
     };
     const nameForm = document.getElementById("title");
     const colorForm = document.getElementById("color_id");
-    const categoryTitle = document.getElementById("category-title").innerHTML;
-    const colorId = document.getElementById("color-id").innerHTML;
+    const categoryTitle = document.querySelector(".category-title").innerHTML;
+    const colorId = document.querySelector(".color-id").innerHTML;
     const categoryInputBtn = document.getElementById("category-input-btn");
     const newCategoryName = document.getElementById("new-category-name");
 
@@ -66,7 +67,12 @@ function setUpdateXHR () {
 };
 
 function setErrorMessages (errorMessages) {
+  errorForm = document.getElementById("category-error-form");
+  if (errorForm.getAttribute("style") == "display: none;") {
+    errorForm.setAttribute("style", "display: block;");
+  };
   err = document.getElementById("category-error-messages");
+  err.innerHTML = "";
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };

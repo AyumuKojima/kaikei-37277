@@ -1,0 +1,63 @@
+<%= form_with class: "spend-input-form", id: "form" do |f| %>
+  <p class="spend-form-text"><%= form_text %></p>
+  <% if edit_spend %>
+    <%= f.text_field :index, class: "hidden" %>
+    <%= f.text_field :update_id, class: "hidden" %>
+    <%= f.text_field :past_category_id, class: "hidden", value: "#{params[:id]}"%>
+  <% end %>
+  <div class="spend-fields">
+    <div class="day-form">
+      <%= raw sprintf(
+                f.date_select(
+                  :day,
+                  use_month_numbers: true,
+                  default: Date.today,
+                  start_year: (Date.today.year - 50),
+                  end_year: (Date.today.year + 10),
+                  date_separator: '%s'),
+                "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
+    </div>
+    <div class="error-messages" id="spend-error-form" style="display: none;"><ul id="spend-error-messages"></ul></div>
+    <div class="money-field">
+      <div class="label-field">
+        <%= f.label :money, class: "label" %>
+        <p class="must-mark centering">必須</p>
+      </div>
+      <div class="money-form-cover">
+        <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出額（1 ~ 99,999,999）" %>
+        <span class="en">円</span>
+      </div>
+    </div>
+    <div class="category-id-field">
+      <div class="label-field">
+        <%= f.label :category_id, class: "label" %>
+        <p class="must-mark centering">必須</p>
+      </div>
+      <%= f.collection_select(
+        :category_id,
+        @select_categories,
+        :id, 
+        :title, 
+        {}, 
+        {class: "spend-category-select pointer"}) %>
+    </div>
+    <div class="memo-field">
+      <div class="label-field">
+        <%= f.label :memo, class: "label" %>
+      </div>
+      <%= f.text_area :memo, placeholder: "メモを入力（任意）", class: "spend-memo-form", row: "10" %>
+    </div>
+  </div>
+  <div class="spend-btn-space">
+    <% if edit_spend %>
+      <div id="spend-show-btns" style="display: none;">
+        <%= f.submit "支出を編集する", id: "spend-update-submit", class: "spend-update-submit centering" %>
+        <div id="spend-delete-btn" class="spend-delete-btn centering pointer">支出を削除する</div>
+      </div>
+    <% else %>
+      <div class="submit-cover centering">
+        <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="destroy-message-box hidden" id="destroy-message-box">
+  このカテゴリーを削除しますか？
+  <div class="destroy-messages">
+    <p class="destroy-message">カテゴリーを削除すると、このカテゴリーに紐付いたすべての支出情報が削除されます。</p>
+    <p class="destroy-message">削除したくない支出がある場合、支出を編集して別のカテゴリーに設定しましょう。</p>
+  </div>
+  <div class="category-destroy-btns">
+    <%= link_to "カテゴリーを削除する", year_month_category_path(@year, @month, @category.id), method: "delete", class: "category-destroy-btn centering", id: "category-destroy-complete-btn" %>
+    <%= link_to "キャンセル", year_month_category_path(@year, @month, @category.id), class: "destroy-cancel-btn centering", id: "destroy-cancel-btn" %>
+  </div>
+</div>

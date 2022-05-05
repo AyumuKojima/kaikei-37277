@@ -1,4 +1,8 @@
-<% if model.errors.any? %>
+<% if edit_category %>
+  <div class="error-messages" id="category-error-form" style="display: none;">
+    <ul id="category-error-messages"></ul>
+  </div>
+<% else %>
   <div class="error-messages">
     <ul id="category-error-messages">
       <% model.errors.full_messages.each do |message| %>

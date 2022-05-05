@@ -45,12 +45,15 @@ function month () {
         const currentYear = document.getElementById("display-year").innerHTML;
         const currentMonth = document.getElementById("display-month").innerHTML;
         if (currentYear == yearForm.value && currentMonth == monthForm.value && oldSpendDay == dayForm.value) {
+          if (document.getElementById("spend-error-form").getAttribute("style") == "display: block;"){
+            document.getElementById("spend-error-form").setAttribute("style", "display: none;");
+          };
           const item = XHR.response.spend;
           const index = XHR.response.index;
           setSum(XHR.response.sum);
           updateSpendView(item, XHR.response.category_index, categoryMarks[index], showSpends[index], showMemos[index], categoryIds[index]);
           clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
-          if (document.getElementById("category-sum") != null){
+          if (document.querySelector(".category-money-sum") != null){
             if (XHR.response.past_category_id != item.category_id) {
               showInfos[index].setAttribute("style", "display: none;");
             };
@@ -80,7 +83,7 @@ function month () {
       showInfos[index].setAttribute("style", "display: none;");
       clearForm(moneyForm, categoryForm, memoForm, updateIdForm, indexForm, yearForm, monthForm, dayForm, spendShowBtns);
       setSum(XHR.response.sum);
-      if (document.getElementById("category-sum") != null){
+      if (document.querySelector(".category-money-sum") != null){
         setCategoryInfo(XHR);
       };
     };
@@ -100,12 +103,12 @@ function setCategoryName (categoryMark) {
 function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
-      if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
-        document.getElementById("spend-form").setAttribute("style", "display: block;");
-        document.getElementById("new-category").setAttribute("class", "new-category hidden");
+      if (document.getElementById("form").getAttribute("style") == "display: none;") {
+        document.getElementById("form").removeAttribute("style");
+        document.getElementById("edit-category-contents").setAttribute("style", "display: none;");
       };
       setBorder(showInfos, showInfos[i]);
-      spendShowBtns.setAttribute("style", "display: block;");
+      spendShowBtns.removeAttribute("style");
       const date = new Date(showDates[i].innerHTML);
       yearForm.value = date.getFullYear();
       monthForm.value = date.getMonth()+1;
@@ -177,18 +180,22 @@ function clearForm (moneyForm, categoryForm, memoForm, updateIdForm, indexForm, 
 };
 
 function setCategoryInfo (XHR) {
-  const categorySum = document.getElementById("category-sum");
-  const categoryBar = document.getElementById("category-bar");
+  const categorySum = document.querySelector(".category-money-sum");
+  const categoryBar = document.querySelector(".category-bar");
   const thinColors = document.querySelectorAll(".thin-color");
-  const colorId = document.getElementById("color-id");
-  const id = colorId.innerHTML;
+  const id = document.querySelector(".color-id").innerHTML;
   const rgba = thinColors[id].innerHTML;
   categorySum.innerHTML = `${XHR.response.category_sum}円`
   categoryBar.setAttribute("style", `background-color: rgba${rgba}; width: ${XHR.response.prop}%;`);
 };
 
 function setErrorMessages (errorMessages) {
+  errorForm = document.getElementById("spend-error-form");
+  if (errorForm.getAttribute("style") == "display: none;") {
+    errorForm.setAttribute("style", "display: block;");
+  };
   err = document.getElementById("spend-error-messages");
+  err.innerHTML = ""
   for (let i=0; i<errorMessages.length; i++) {
     err.insertAdjacentHTML('beforeend', `<li>${errorMessages[i]}</li>`)
   };
