@@ -1,4 +1,4 @@
-<%= form_with url: "/years/#{params[:year_id]}/months/#{params[:month_id]}/spends", class: "spend-input-form", id: "form" do |f| %>
+<%= form_with class: "spend-input-form", id: "form" do |f| %>
   <p class="spend-form-text">支出を入力</p>
   <div class="error-messages"><ul id="spend-error-messages"></ul></div>
   <div class="spend-fields">
