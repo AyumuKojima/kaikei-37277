@@ -102,31 +102,37 @@
   color: rgb(138, 26, 194);
 }
 
-.spend-input {
-  height: 90%;
-  width: 80%;
-  margin: 25% 3% 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spend-form-text {
-  height: 17%;
-  font-size: 1.7vw;
-  color: rgb(0, 164, 150);
-}
-
 .spend-input-form {
   border: 3px solid rgb(0, 164, 150);
   border-radius: 10px;
   padding: 10px;
+  width: 80%;
+  height: 70%;
+  margin: 25% 3% 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.spend-form-text {
+  height: 10%;
+  font-size: 1.7vw;
+  color: rgb(0, 164, 150);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.spend-fields {
+  height: 75%;
   width: 100%;
-  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .day-form {
-  height: 10%;
+  height: 14%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,43 +191,67 @@
   cursor: pointer;
 }
 
+.money-field {
+  height: 18%;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.money-form-cover {
+  display: flex;
+  height: 50%;
+  width: 100%;
+}
+
+.en {
+  color: rgb(95, 94, 94);
+  margin-left: 5px;
+}
+
 .spend-money-input-form {
   display: block;
-  width: 90%;
-  height: 7%;
+  width: 82%;
+  height: 100%;
   border: 1.5px solid rgb(0, 164, 150);
   border-radius: 5px;
   padding: 6px;
-  margin: 5% 0 5% 2%;
   font-size: 1vw;
 }
 
+.category-id-field {
+  height: 18%;
+  width: 100%;
+  padding-left: 10px;
+}
+
 .spend-category-select {
-  height: 7%;
-  width: 90%;
+  height: 50%;
+  width: 95%;
   border: 1.5px solid rgb(0, 164, 150);
   border-radius: 5px;
   padding: 6px;
-  margin: 0 0 5% 2%;
   font-size: 1vw;
+}
+
+.memo-field {
+  height: 45%;
+  width: 100%;
+  padding-left: 10px;
 }
 
 .spend-memo-form {
   display: block;
-  width: 90%;
-  height: 30%;
+  width: 95%;
+  height: 80%;
   border: 1.5px solid rgb(0, 164, 150);
   border-radius: 5px;
   padding: 6px;
-  margin: 0 0 10px 2%;
   font-size: 1vw;
 }
 
 .submit-cover {
-  width: 90%;
-  height: 10%;
-  margin-left: 10px;
-  margin-top: 9%;
+  width: 100%;
+  height: 8%;
 }
 
 .submit {

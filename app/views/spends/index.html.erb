@@ -2,36 +2,5 @@
   <%= render partial: "calendar" %>
 </div>
 <div class="sub-contents">
-  <div class="spend-input">
-    <%= form_with url: "/years/#{params[:year_id]}/months/#{params[:month_id]}/spends", class: "spend-input-form", id: "form" do |f| %>
-      <p class="spend-form-text centering">支出を入力</p>
-      <div class="day-form">
-        <%= raw sprintf(
-                  f.date_select(
-                    :day,
-                    use_month_numbers: true,
-                    default: Date.today,
-                    start_year: (Date.today.year - 50),
-                    end_year: (Date.today.year + 10),
-                    date_separator: '%s'),
-                  "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
-      </div>
-      <%= f.label :money %>
-      <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
-      <%= f.label :category_id %>
-      <%= f.collection_select(
-        :category_id,
-        @select_categories,
-        :id, 
-        :title, 
-        {}, 
-        {class: "spend-category-select pointer"}) %>
-      <%= f.label :memo %>
-      <%= f.text_area :memo, placeholder: "メモを入力（任意）", class: "spend-memo-form", row: "10" %>
-      <div class="submit-cover centering">
-        <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
-      </div>
-    <% end %>
-    <div class="error-messages"><ul id="spend-error-messages"></ul></div>
-  </div>
+  <%= render partial: "spend-form"%>
 </div>

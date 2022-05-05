@@ -23,14 +23,13 @@ body {
 
 .label-field {
   margin: 3px 5px;
-  width: 40%;
+  width: 70%;
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
 }
 
 .label {
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   font-weight: bold;
   height: 100%;
 }
@@ -41,9 +40,9 @@ body {
   border: 2px solid red;
   border-radius: 5px;
   height: 100%;
-  width: 30%;
-  margin-left: 10px;
-  font-size: 0.5vw;
+  width: 20%;
+  margin-left: 15px;
+  font-size: 1px;
 }
 
 .error-messages {
