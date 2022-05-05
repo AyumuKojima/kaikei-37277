@@ -4,7 +4,7 @@
       <%= form_text %>
     </p>
   </div>
-  <%= render partial: "layouts/error_message", locals: { model: @category } %>
+  <%= render partial: "layouts/error_message", locals: { edit_category: edit_category, model: @category } %>
   <%= form_with url: "/years/#{@year}/months/#{@month}/categories", method: "POST", class: "new-category-box-footer", id: "post-category-form", local: true do |f| %>
     <div class="category-fields">
       <div class="title-field">
