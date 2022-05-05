@@ -102,37 +102,36 @@
   color: rgb(138, 26, 194);
 }
 
+.spend-form-text {
+  width: 80%;
+  height: 8%;
+  margin: 20% 3% 0;
+  font-size: 1.7vw;
+  color: rgb(0, 164, 150);
+}
+
 .spend-input-form {
   border: 3px solid rgb(0, 164, 150);
   border-radius: 10px;
   padding: 10px;
   width: 80%;
-  height: 70%;
-  margin: 25% 3% 0;
+  height: 65%;
+  margin: 0 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.spend-form-text {
-  height: 10%;
-  font-size: 1.7vw;
-  color: rgb(0, 164, 150);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
 .spend-fields {
-  height: 75%;
+  height: 78%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .day-form {
-  height: 14%;
+  height: 12%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,14 +191,14 @@
 }
 
 .money-field {
-  height: 18%;
+  height: 16%;
   width: 100%;
   padding-left: 10px;
 }
 
 .money-form-cover {
   display: flex;
-  height: 50%;
+  height: 53%;
   width: 100%;
 }
 
@@ -219,13 +218,13 @@
 }
 
 .category-id-field {
-  height: 18%;
+  height: 16%;
   width: 100%;
   padding-left: 10px;
 }
 
 .spend-category-select {
-  height: 50%;
+  height: 53%;
   width: 95%;
   border: 1.5px solid rgb(0, 164, 150);
   border-radius: 5px;
@@ -234,7 +233,7 @@
 }
 
 .memo-field {
-  height: 45%;
+  height: 35%;
   width: 100%;
   padding-left: 10px;
 }
@@ -249,21 +248,61 @@
   font-size: 1vw;
 }
 
+.spend-btn-space {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
 .submit-cover {
   width: 100%;
-  height: 8%;
+  height: 70%;
 }
 
 .submit {
   color: white;
   border-radius: 5px;
-  height: 100%;
+  height: 55%;
   width: 70%;
   background-color: rgb(190, 242, 238);
 }
 
 .submit:hover {
   background-color: rgb(37, 194, 181);
+}
+
+#spend-show-btns {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spend-update-submit {
+  color: white;
+  border-radius: 5px;
+  height: 38%;
+  width: 70%;
+  background-color: rgb(190, 242, 238);
+}
+
+.spend-update-submit:hover {
+  background-color: rgb(37, 194, 181);
+}
+
+.spend-delete-btn {
+  color: white;
+  border-radius: 5px;
+  height: 38%;
+  width: 70%;
+  background-color: rgb(249, 204, 204);
+}
+
+.spend-delete-btn:hover {
+  background-color: red;
 }
 
 .sum-data {

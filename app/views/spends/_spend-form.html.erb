@@ -1,6 +1,10 @@
+<p class="spend-form-text centering"><%= form_text %></p>
 <%= form_with class: "spend-input-form", id: "form" do |f| %>
-  <p class="spend-form-text">支出を入力</p>
-  <div class="error-messages"><ul id="spend-error-messages"></ul></div>
+  <% if edit_spend %>
+    <%= f.text_field :index, class: "hidden" %>
+    <%= f.text_field :update_id, class: "hidden" %>
+    <%= f.text_field :past_category_id, class: "hidden", value: "#{params[:id]}"%>
+  <% end %>
   <div class="spend-fields">
     <div class="day-form">
       <%= raw sprintf(
@@ -13,6 +17,7 @@
                   date_separator: '%s'),
                 "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
     </div>
+    <div class="error-messages" id="spend-error-form" style="display: none;"><ul id="spend-error-messages"></ul></div>
     <div class="money-field">
       <div class="label-field">
         <%= f.label :money, class: "label" %>
@@ -43,7 +48,16 @@
       <%= f.text_area :memo, placeholder: "メモを入力（任意）", class: "spend-memo-form", row: "10" %>
     </div>
   </div>
-  <div class="submit-cover centering">
-    <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
+  <div class="spend-btn-space">
+    <% if edit_spend %>
+      <div id="spend-show-btns" style="display: none;">
+        <%= f.submit "支出を編集する", id: "spend-update-submit", class: "spend-update-submit centering" %>
+        <div id="spend-delete-btn" class="spend-delete-btn centering pointer">支出を削除する</div>
+      </div>
+    <% else %>
+      <div class="submit-cover centering">
+        <%= f.submit "支出を入力する", id: "submit", class: "submit centering" %>
+      </div>
+    <% end %>
   </div>
 <% end %>

@@ -32,41 +32,7 @@
   </div>
 </div>
 <div class="sub-contents">
-  <div class="spend-input" id="spend-form">
-    <%= form_with url: "/years/#{@year}/months/#{@month}/spends", class: "spend-input-form", id: "form" do |f| %>
-      <p class="spend-form-text centering">支出を編集</p>
-      <%= f.text_field :index, class: "hidden" %>
-      <%= f.text_field :update_id, class: "hidden" %>
-      <div class="day-form">
-        <%= raw sprintf(
-                  f.date_select(
-                    :day,
-                    use_month_numbers: true,
-                    default: Date.today,
-                    start_year: (Date.today.year - 50),
-                    end_year: (Date.today.year + 10),
-                    date_separator: '%s'),
-                  "<p class='year'> 年 </p>", "<p class='month'> 月 </p>") + "<p class='day'> 日 </p>" %>
-      </div>
-      <%= f.label :money %>
-      <%= f.text_field :money, class: "spend-money-input-form", placeholder: "支出金額を入力してください。" %>
-      <%= f.label :category_id %>
-      <%= f.collection_select(
-        :category_id,
-        @select_categories,
-        :id, 
-        :title, 
-        {}, 
-        {class: "spend-category-select"}) %>
-      <%= f.label :memo %>
-      <%= f.text_area :memo, class: "spend-memo-form", row: "10" %>
-      <div id="spend-show-btns" style="display: none;">
-        <%= f.submit "支出を編集する", id: "spend-update-submit" %>
-        <div id="spend-delete-btn" class="pointer">支出を削除する</div>
-      </div>
-    <% end %>
-    <div class="error-messages"><ul id="spend-error-messages"></ul></div>
-  </div>
+  <%= render partial: "spends/spend-form", locals: { edit_spend: true, form_text: "支出を編集" } %>
 
   <div class="hidden">
     <% @select_categories.each do |category| %>

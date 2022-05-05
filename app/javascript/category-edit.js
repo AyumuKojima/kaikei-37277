@@ -3,7 +3,7 @@ function editCategory () {
   editBtn.addEventListener("click", () => {
     const editCategoryContents = document.getElementById("edit-category-contents")
     const editCategoryForm = document.getElementById("new-category");
-    const spendForm = document.getElementById("spend-form");
+    const spendForm = document.getElementById("form");
     const colors = document.querySelectorAll(".color");
     if (editCategoryContents.getAttribute("style") == "display: none;") {
       editCategoryContents.removeAttribute("style");

@@ -100,12 +100,12 @@ function setCategoryName (categoryMark) {
 function fillInForm (categoryIds, showInfos, spendShowBtns, yearForm, monthForm, dayForm, showDates, showSpends, moneyForm, categoryForm, memoForm, showMemos, indexForm, spendIds, updateIdForm) {
   for (let i=0; i < showInfos.length; i++) {
     showInfos[i].addEventListener("click", () => {
-      if (document.getElementById("spend-form").getAttribute("style") == "display: none;") {
-        document.getElementById("spend-form").setAttribute("style", "display: block;");
+      if (document.getElementById("form").getAttribute("style") == "display: none;") {
+        document.getElementById("form").removeAttribute("style");
         document.getElementById("edit-category-contents").setAttribute("style", "display: none;");
       };
       setBorder(showInfos, showInfos[i]);
-      spendShowBtns.setAttribute("style", "display: block;");
+      spendShowBtns.removeAttribute("style");
       const date = new Date(showDates[i].innerHTML);
       yearForm.value = date.getFullYear();
       monthForm.value = date.getMonth()+1;
