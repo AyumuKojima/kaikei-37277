@@ -1,34 +1,47 @@
-<h2>Sign up</h2>
+<div class="log-in-main centering">
+  <div class="log-in-contents">
+    <div class="log-in-left">
+      <span class="log-in-logo">Sign up</span>
+      <div class="log-in-btns">
+        <p>or</p>
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "Log in", new_session_path(resource_name), class: "sign-up-btn centering" %><br />
+        <% end %>
+      </div>
+    </div>
+    <div class="log-in-right">
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: "sign-up-form", local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="sign-up-fields">
+        
+          <div class="sign-up-field">
+            <%= f.label :nickname, class: "label" %><br />
+            <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", maxlength: "8", class: "email-field" %>
+          </div>
 
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="sign-up-field">
+            <%= f.label :email, class: "label" %><br />
+            <%= f.email_field :email, autocomplete: "email", class: "email-field" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", maxlength: "8" %>
+          <div class="sign-up-field">
+            <%= f.label :password, class: "label" %>
+            <% if @minimum_password_length %>
+            <em class="password-min-length">(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "password-field" %>
+          </div>
+
+          <div class="sign-up-field">
+            <%= f.label :password_confirmation, class: "label" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password-field" %>
+          </div>
+        </div>
+
+        <div class="sign-up-actions centering">
+          <%= f.submit "Sign up", class: "log-in-submit centering" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

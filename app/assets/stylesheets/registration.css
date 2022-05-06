@@ -1,0 +1,38 @@
+.sign-up-form {
+  height: 90%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-up-fields {
+  height: 65%;
+  width: 100%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up-field {
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.password-min-length {
+  font-size: 1vw;
+  color: rgb(94, 91, 91);
+}
+
+.sign-up-actions {
+  height: 10%;
+  width: 50%;
+  margin-top: 4%;
+  border-radius: 10px;
+  color: white;
+  background-color: rgb(160, 193, 128);
+}
+
+.sign-up-actions:hover {
+  background-color: rgb(94, 175, 13);
+}
