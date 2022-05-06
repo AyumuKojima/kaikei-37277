@@ -68,9 +68,10 @@ body {
 
 .logo {
   color: rgb(240, 152, 123);
-  font-size: 1.7vw;
+  font-size: 2vw;
   font-weight: bold;
   font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .header-month {
