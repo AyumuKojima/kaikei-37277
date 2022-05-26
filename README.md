@@ -36,7 +36,8 @@ Basic認証ID: admin
 カテゴリー別に支出を管理し、どのカテゴリーの中で自分がいくら支出をしているのかを自動的に計算できれば、無駄遣いが減り、より効率良くお金と向き合えると考えた。
 
 ## 洗い出した要件
-![要件定義シート](https://docs.google.com/spreadsheets/d/1sPKIbz8YJY-vutaZijvYMx5DmXwDwRzJhguakv2usT8/edit?usp=sharing)
+要件定義シート
+https://docs.google.com/spreadsheets/d/1sPKIbz8YJY-vutaZijvYMx5DmXwDwRzJhguakv2usT8/edit?usp=sharing
 
 ## 実装予定の機能
 - 収入管理機能
