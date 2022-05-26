@@ -1,7 +1,7 @@
 # README
 
 ## アプリケーション名
-Spend manager
+Spend manager <br>
 ('kaikei-37277' はgit-hubのレポジトリ名です。)
 
 ## アプリケーション概要
