@@ -13,7 +13,7 @@ Spend manager
 https://kaikei-37277.herokuapp.com/
 
 ## テスト用アカウント
-Basic認証パスワード: 2222
+Basic認証パスワード: 2222 <br>
 Basic認証ID: admin
 
 ## 利用方法
