@@ -1,22 +1,22 @@
-<% if current_page?("/years/#{@year}/months/#{@month}/spends") %>
+<% if request.fullpath == "/years/#{@year}/months/#{@month}/spends" %>
   <% if @month == 1 %>
     <%= link_to '◀︎', year_month_spends_path(@year - 1, 12), class: "last-month-btn" %>
   <% else %>
     <%= link_to '◀︎', year_month_spends_path(@year, @month - 1), class: "last-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}" %>
   <% if @month == 1 %>
     <%= link_to '◀︎', year_month_path(@year - 1, 12), class: "last-month-btn" %>
   <% else %>
     <%= link_to '◀︎', year_month_path(@year, @month - 1), class: "last-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/categories") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}/categories" %>
   <% if @month == 1 %>
     <%= link_to '◀︎', year_month_categories_path(@year - 1, 12), class: "last-month-btn" %>
   <% else %>
     <%= link_to '◀︎', year_month_categories_path(@year, @month - 1), class: "last-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/categories/#{@category.id}") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}/categories/#{@category.id}" %>
   <% if @month == 1 %>
     <%= link_to '◀︎', year_month_category_path(@year - 1, 12), class: "last-month-btn" %>
   <% else %>
@@ -27,25 +27,25 @@
 <p id="display-year"><%= @year %></p>年 <p id="display-month"><%= @month %></p>月
 <span id="wday_num" style="display: none;"><%= Date.new(@year, @month, 1).wday %></span>
 
-<% if current_page?("/years/#{@year}/months/#{@month}/spends") %>
+<% if request.fullpath == "/years/#{@year}/months/#{@month}/spends" %>
   <% if @month == 12 %>
     <%= link_to '▶︎', year_month_spends_path(@year + 1, 1), class: "next-month-btn" %>
   <% else %>
     <%= link_to '▶︎', year_month_spends_path(@year, @month + 1), class: "next-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}" %>
   <% if @month == 12 %>
     <%= link_to '▶︎', year_month_path(@year + 1, 1), class: "next-month-btn" %>
   <% else %>
     <%= link_to '▶︎', year_month_path(@year, @month + 1), class: "next-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/categories") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}/categories" %>
   <% if @month == 12 %>
     <%= link_to '▶︎', year_month_categories_path(@year + 1, 1), class: "next-month-btn" %>
   <% else %>
     <%= link_to '▶︎', year_month_categories_path(@year, @month + 1), class: "next-month-btn" %>
   <% end %>
-<% elsif current_page?("/years/#{@year}/months/#{@month}/categories/#{@category.id}") %>
+<% elsif request.fullpath == "/years/#{@year}/months/#{@month}/categories/#{@category.id}" %>
   <% if @month == 12 %>
     <%= link_to '▶︎', year_month_category_path(@year + 1, 1), class: "next-month-btn" %>
   <% else %>
